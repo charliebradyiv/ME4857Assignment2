@@ -1,0 +1,69 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done (7.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/info/ME4857Assignment2/build/robot_model
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/urdf/robot_model.csv
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/urdf/robot_model.urdf
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/base_link.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_BL.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_BR.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_FL.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_FR.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_ML.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_MR.STL
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/worlds/assignment_world.sdf
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/__pycache__/gazebo.launch.cpython-312.pyc
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/build/.built_by
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/build/COLCON_IGNORE
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/display.launch
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/gazebo.launch.py
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/.colcon_install_layout
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/COLCON_IGNORE
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/_local_setup_util_ps1.py
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/_local_setup_util_sh.py
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/local_setup.bash
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/local_setup.ps1
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/local_setup.sh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/local_setup.zsh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/setup.bash
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/setup.ps1
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/setup.sh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/install/setup.zsh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/COLCON_IGNORE
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/build_2026-04-23_15-39-53/events.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/build_2026-04-23_15-39-53/logger_all.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/latest/events.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/latest/logger_all.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/latest_build/events.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/log/latest_build/logger_all.log
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/package_run_dependencies/robot_model
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/parent_prefix_path/robot_model
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/ament_prefix_path.sh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/ament_prefix_path.dsv
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/path.sh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/path.dsv
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.bash
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.sh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.zsh
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.dsv
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/package.dsv
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/packages/robot_model
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/cmake/robot_modelConfig.cmake
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/cmake/robot_modelConfig-version.cmake
+-- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/package.xml

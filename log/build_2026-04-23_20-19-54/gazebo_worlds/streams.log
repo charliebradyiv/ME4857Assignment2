@@ -1,0 +1,25 @@
+[0.036s] Invoking command in '/home/info/ME4857Assignment2/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/gazebo_worlds -- -j4 -l4
+[0.156s] Invoked command in '/home/info/ME4857Assignment2/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/gazebo_worlds -- -j4 -l4
+[0.182s] Invoking command in '/home/info/ME4857Assignment2/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/gazebo_worlds
+[0.212s] -- Install configuration: ""
+[0.213s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/worlds
+[0.213s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/worlds/assignment_world.sdf
+[0.214s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models
+[0.214s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models/robot_model
+[0.215s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models/robot_model/meshes
+[0.216s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/package_run_dependencies/gazebo_worlds
+[0.217s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/parent_prefix_path/gazebo_worlds
+[0.217s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.sh
+[0.219s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.dsv
+[0.219s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/path.sh
+[0.220s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/path.dsv
+[0.220s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.bash
+[0.221s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.sh
+[0.221s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.zsh
+[0.222s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.dsv
+[0.222s] -- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/package.dsv
+[0.223s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/packages/gazebo_worlds
+[0.223s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig.cmake
+[0.223s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig-version.cmake
+[0.224s] -- Up-to-date: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/package.xml
+[0.237s] Invoked command in '/home/info/ME4857Assignment2/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/gazebo_worlds

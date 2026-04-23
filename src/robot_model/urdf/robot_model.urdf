@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<robot name="robot_model">
+
+<material name="black">
+  <color rgba="0 0 0 1"/>
+</material>
+
+<material name="grey">
+  <color rgba="0.75 0.75 0.75 1"/>
+</material>
+
+<!-- ================= BASE FRAME (GROUND REFERENCE) ================= -->
+<link name="base_footprint"/>
+
+<joint name="base_footprint_to_base_link" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0.075" rpy="0 0 0"/>
+</joint>
+
+<!-- ================= BASE ================= -->
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0"/>
+    <mass value="20"/>
+    <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.5"/>
+  </inertial>
+
+  <visual>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/base_link.STL"/>
+    </geometry>
+    <material name="grey"/>
+  </visual>
+
+  <collision>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/base_link.STL"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- ==================== RIGHT SIDE WHEELS ==================== -->
+
+<link name="link_BR">
+  <inertial>
+    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_BR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_BR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_BR" type="continuous">
+  <origin xyz="-0.15855 -0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_BR"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<link name="link_MR">
+  <inertial>
+    <origin xyz="-1.1102E-16 0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_MR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_MR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_MR" type="continuous">
+  <origin xyz="0.0081106 -0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_MR"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<link name="link_FR">
+  <inertial>
+    <origin xyz="0 0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_FR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_FR.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_FR" type="continuous">
+  <origin xyz="0.17478 -0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_FR"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<!-- ==================== LEFT SIDE WHEELS ==================== -->
+
+<link name="link_BL">
+  <inertial>
+    <origin xyz="0 -0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_BL.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_BL.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_BL" type="continuous">
+  <origin xyz="-0.15855 0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_BL"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<link name="link_ML">
+  <inertial>
+    <origin xyz="-1.1102E-16 -0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_ML.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_ML.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_ML" type="continuous">
+  <origin xyz="0.0081106 0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_ML"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<link name="link_FL">
+  <inertial>
+    <origin xyz="0 -0.03 0" rpy="0 0 0"/>
+    <mass value="1.0412"/>
+    <inertia
+      ixx="0.0018022"
+      ixy="-1.1488E-35"
+      ixz="-7.1988E-39"
+      iyy="0.00298"
+      iyz="4.5091E-36"
+      izz="0.0018022"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_FL.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robot_model/meshes/link_FL.STL" scale="1.0 1.0 1.2"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="joint_FL" type="continuous">
+  <origin xyz="0.17478 0.185 -0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_FL"/>
+  <axis xyz="0 1 0"/>
+  <dynamics damping="0.1" friction="0.1"/>
+</joint>
+
+<!-- ================= SENSORS ================= -->
+
+<link name="imu_link"/>
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.1"/>
+</joint>
+
+<gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <imu/>
+  </sensor>
+</gazebo>
+
+<link name="lidar_link"/>
+<joint name="lidar_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="lidar_link"/>
+  <origin xyz="0.2 0 0.15"/>
+</joint>
+
+<gazebo reference="lidar_link">
+  <sensor name="lidar" type="ray">
+    <update_rate>10</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <min_angle>-3.14</min_angle>
+          <max_angle>3.14</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.1</min>
+        <max>10</max>
+      </range>
+    </ray>
+  </sensor>
+</gazebo>
+
+<link name="camera_link"/>
+<joint name="camera_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera_link"/>
+  <origin xyz="0.25 0 0.2"/>
+</joint>
+
+<gazebo reference="camera_link">
+  <sensor name="camera" type="camera">
+    <update_rate>30</update_rate>
+    <camera>
+      <horizontal_fov>1.57</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+      </image>
+    </camera>
+  </sensor>
+</gazebo>
+
+</robot>

@@ -1,0 +1,40 @@
+[0.182s] Invoking command in '/home/info/ME4857Assignment2/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/info/ME4857Assignment2/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/info/ME4857Assignment2/install/robot_model
+[1.545s] -- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[2.359s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.752s] -- Configuring done (1.4s)
+[2.843s] -- Generating done (0.1s)
+[2.864s] -- Build files have been written to: /home/info/ME4857Assignment2/build/robot_model
+[3.012s] Invoked command in '/home/info/ME4857Assignment2/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/info/ME4857Assignment2/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/info/ME4857Assignment2/install/robot_model
+[3.018s] Invoking command in '/home/info/ME4857Assignment2/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/robot_model -- -j4 -l4
+[3.142s] Invoked command in '/home/info/ME4857Assignment2/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/robot_model -- -j4 -l4
+[3.176s] Invoking command in '/home/info/ME4857Assignment2/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/robot_model
+[3.195s] -- Install configuration: ""
+[3.196s] -- Execute custom install script
+[3.234s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/urdf/robot_model.csv
+[3.244s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/urdf/robot_model.urdf
+[3.255s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/base_link.STL
+[3.256s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_BL.STL
+[3.268s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_BR.STL
+[3.269s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_FL.STL
+[3.270s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_FR.STL
+[3.271s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_ML.STL
+[3.278s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/meshes/link_MR.STL
+[3.280s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/display.launch.py
+[3.283s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/launch/gazebo.launch.py
+[3.309s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/config/joint_names_robot_model.yaml
+[3.314s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/package_run_dependencies/robot_model
+[3.315s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/parent_prefix_path/robot_model
+[3.317s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/ament_prefix_path.sh
+[3.318s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/ament_prefix_path.dsv
+[3.319s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/path.sh
+[3.320s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/environment/path.dsv
+[3.321s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.bash
+[3.322s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.sh
+[3.323s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.zsh
+[3.324s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/local_setup.dsv
+[3.325s] -- Symlinking: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/package.dsv
+[3.349s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/ament_index/resource_index/packages/robot_model
+[3.350s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/cmake/robot_modelConfig.cmake
+[3.351s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/cmake/robot_modelConfig-version.cmake
+[3.352s] -- Up-to-date symlink: /home/info/ME4857Assignment2/install/robot_model/share/robot_model/package.xml
+[3.356s] Invoked command in '/home/info/ME4857Assignment2/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/robot_model

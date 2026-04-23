@@ -1,0 +1,4 @@
+Invoking command in '/home/info/ME4857Assignment2/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/gazebo_worlds -- -j4 -l4
+Invoked command in '/home/info/ME4857Assignment2/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/info/ME4857Assignment2/build/gazebo_worlds -- -j4 -l4
+Invoking command in '/home/info/ME4857Assignment2/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/gazebo_worlds
+Invoked command in '/home/info/ME4857Assignment2/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/info/ME4857Assignment2/build/gazebo_worlds

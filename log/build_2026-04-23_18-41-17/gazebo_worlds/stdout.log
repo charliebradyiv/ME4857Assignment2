@@ -1,0 +1,38 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Configuring done (8.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/info/ME4857Assignment2/build/gazebo_worlds
+-- Install configuration: ""
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/worlds
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/worlds/assignment_world.sdf
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models/robot_model
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/models/robot_model/meshes
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/package_run_dependencies/gazebo_worlds
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/parent_prefix_path/gazebo_worlds
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.sh
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.dsv
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/path.sh
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/environment/path.dsv
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.bash
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.sh
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.zsh
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/local_setup.dsv
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/package.dsv
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/ament_index/resource_index/packages/gazebo_worlds
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig.cmake
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig-version.cmake
+-- Installing: /home/info/ME4857Assignment2/install/gazebo_worlds/share/gazebo_worlds/package.xml
