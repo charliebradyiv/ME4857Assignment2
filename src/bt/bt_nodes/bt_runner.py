@@ -76,7 +76,6 @@ class BatteryOK(py_trees.behaviour.Behaviour):
 class FireSafe(py_trees.behaviour.Behaviour):
     """
     Reads fire safety status from /fire_safe published by fire_safety.py.
-    fire_safety.py owns all distance logic — this just reads the flag.
     """
     def __init__(self, node):
         super().__init__('FireSafe')
@@ -92,7 +91,6 @@ class FireSafe(py_trees.behaviour.Behaviour):
 class RetreatFromFire(py_trees.behaviour.Behaviour):
     """
     Drives the robot away from the fire when FireSafe fails.
-    Fire coordinates kept as constants for retreat direction calculation.
     """
     FIRE_X   = -14.2
     FIRE_Y   = 10.8
@@ -143,13 +141,16 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
 
     Phase 1 — NAVIGATE:
       Sends a goal to navigate_to_server with the target waypoint name.
-      navigate_to_server drives using hardcoded coordinates with LiDAR
-      obstacle avoidance. Returns SUCCESS when within stop_distance.
+      Returns SUCCESS when within stop_distance by odometry.
 
     Phase 2 — VERIFY:
       Once the waypoint is reached, the camera confirms the expected colour
       is visible. Rotates slowly to search if not immediately in view.
       Times out after verify_timeout seconds and proceeds anyway.
+
+    For intermediate waypoints like 'origin' where there is no coloured
+    marker, set expected_colour='orange' and verify_timeout=2.0 so the
+    verify phase times out quickly and the robot moves on immediately.
     """
 
     def __init__(self, name, node, target_name, expected_colour,
@@ -396,10 +397,10 @@ class BTRunner(Node):
         self.robot_y   = 0.0
         self.robot_yaw = 0.0
 
-        # Fire safety — driven by /fire_safe from fire_safety.py
+        # Fire safety
         self.fire_too_close = False
 
-        # Sensor ready flags — WaitForSensors blocks until all True
+        # Sensor ready flags
         self.fire_safe_received = False
         self.odom_received      = False
         self.scan_received      = False
@@ -416,18 +417,23 @@ class BTRunner(Node):
         # LiDAR state
         self.front_obstacle_distance = float('inf')
 
-        # Task flags
+        # ── Task flags ───────────────────────────────────
         self.sensor_wait_done = False
         self.task1_done       = False
         self.task2_done       = False
         self.task5_done       = False
 
         # Task 1 step flags
-        self.t1_survivor_reached = False
-        self.t1_waited           = False
-        self.t1_tf_published     = False
-        self.t1_medkit_reached   = False
-        self.t1_returned         = False
+        # Two intermediate 'origin' stops are included to reduce
+        # odometry drift on the long diagonal journeys:
+        #   survivor → origin → medical_kit → origin → survivor
+        self.t1_survivor_reached  = False
+        self.t1_waited            = False
+        self.t1_tf_published      = False
+        self.t1_origin1_reached   = False   # stop at origin before med kit
+        self.t1_medkit_reached    = False
+        self.t1_origin2_reached   = False   # stop at origin before return
+        self.t1_returned          = False
 
         # Task 2 step flags
         self.t2_dam_reached   = False
@@ -444,15 +450,15 @@ class BTRunner(Node):
         self.survivor_tf_client = self.create_client(Trigger, 'publish_survivor_tf')
 
         # Subscriptions
-        self.create_subscription(Bool,     '/fire_safe',              self.fire_safe_cb,       10)
-        self.create_subscription(Bool,     '/battery_level_low',      self.battery_cb,         10)
-        self.create_subscription(Odometry, '/odom',                   self.odom_cb,            10)
-        self.create_subscription(String,   '/detected_colour',        self.detected_colour_cb, 10)
-        self.create_subscription(Bool,     '/colour_visible',         self.colour_visible_cb,  10)
-        self.create_subscription(Float32,  '/colour_offset_x',        self.colour_offset_cb,   10)
-        self.create_subscription(Float32,  '/colour_area',            self.colour_area_cb,     10)
-        self.create_subscription(Float32,  '/front_obstacle_distance',self.front_dist_cb,      10)
-        self.create_subscription(LaserScan,'/scan',                   self.scan_cb,            10)
+        self.create_subscription(Bool,     '/fire_safe',               self.fire_safe_cb,       10)
+        self.create_subscription(Bool,     '/battery_level_low',       self.battery_cb,         10)
+        self.create_subscription(Odometry, '/odom',                    self.odom_cb,            10)
+        self.create_subscription(String,   '/detected_colour',         self.detected_colour_cb, 10)
+        self.create_subscription(Bool,     '/colour_visible',          self.colour_visible_cb,  10)
+        self.create_subscription(Float32,  '/colour_offset_x',         self.colour_offset_cb,   10)
+        self.create_subscription(Float32,  '/colour_area',             self.colour_area_cb,     10)
+        self.create_subscription(Float32,  '/front_obstacle_distance', self.front_dist_cb,      10)
+        self.create_subscription(LaserScan,'/scan',                    self.scan_cb,            10)
 
         self.tree = self._build_tree()
         self.get_logger().info('BTRunner started — waiting for sensors')
@@ -513,7 +519,20 @@ class BTRunner(Node):
 
     def _build_tree(self):
 
-        # ── Wait for all sensor nodes to publish ──
+        # ── Helper: wrap an action in a skip-if-done Selector ─────────────
+        def step(name, flag_name, action):
+            return py_trees.composites.Selector(
+                name=f'{name}Wrapper', memory=False,
+                children=[
+                    TaskAlreadyDone(f'{name}Skip', self, flag_name),
+                    py_trees.composites.Sequence(
+                        name=f'{name}Do', memory=True,
+                        children=[action, MarkTaskDone(f'Mark{name}', self, flag_name)]
+                    )
+                ]
+            )
+
+        # ── Wait for all sensor nodes ──────────────────────────────────────
         wait_for_sensors = py_trees.composites.Selector(
             name='SensorReadyWrapper', memory=False,
             children=[
@@ -528,13 +547,13 @@ class BTRunner(Node):
             ]
         )
 
-        # ── Fire safety fallback ──
+        # ── Fire safety fallback ───────────────────────────────────────────
         fire_safety_fallback = py_trees.composites.Selector(
             name='FireSafetyFallback', memory=False,
             children=[FireSafe(self), RetreatFromFire(self)]
         )
 
-        # ── Battery fallback ──
+        # ── Battery fallback ───────────────────────────────────────────────
         charge_with_timeout = py_trees.decorators.Timeout(
             name='ChargeTimeout', child=WaitForCharge(self), duration=60.0
         )
@@ -559,41 +578,73 @@ class BTRunner(Node):
             ]
         )
 
-        def step(name, flag_name, action):
-            return py_trees.composites.Selector(
-                name=f'{name}Wrapper', memory=False,
-                children=[
-                    TaskAlreadyDone(f'{name}Skip', self, flag_name),
-                    py_trees.composites.Sequence(
-                        name=f'{name}Do', memory=True,
-                        children=[action, MarkTaskDone(f'Mark{name}', self, flag_name)]
-                    )
-                ]
-            )
+        # ── Task 1: Bring Medical Kit to Survivor ──────────────────────────
+        #
+        # Route: survivor → origin → medical_kit → origin → survivor
+        #
+        # Breaking the long 36m diagonal (survivor ↔ medical_kit) into two
+        # ~20m legs via the safe open centre of the world (origin = 0,0)
+        # significantly reduces accumulated odometry drift from wall
+        # collisions that would otherwise cause the robot to stop at the
+        # wrong location.
+        #
+        # For origin stops, expected_colour='orange' (will never be found)
+        # with verify_timeout=2.0 so camera verify completes almost
+        # immediately — origin is just a navigation waypoint, not a marker.
 
-        # ── Task 1: Bring Medical Kit to Survivor ──
         task1_inner = py_trees.composites.Sequence(
             name='Task1_MedicalKit', memory=True,
             children=[
+
+                # Step 1 — Drive to survivor, stop 1m away
                 step('GoToSurvivor', 't1_survivor_reached',
                      NavigateToVerified('GoToSurvivor', self,
                                         target_name='survivor',
                                         expected_colour='green',
-                                        stop_distance=1.0)),
+                                        stop_distance=1.0,
+                                        verify_timeout=15.0)),
+
+                # Step 2 — Wait 1 second (per brief)
                 step('WaitOneSec', 't1_waited',
                      WaitSeconds('WaitOneSec', seconds=1.0)),
+
+                # Step 3 — Publish survivor TF to map frame
                 step('PublishTF', 't1_tf_published',
                      PublishSurvivorTF(self)),
+
+                # Step 4 — Return to origin before heading south
+                #          Breaks the long diagonal, reduces odom drift
+                step('ToOrigin1', 't1_origin1_reached',
+                     NavigateToVerified('ToOrigin1', self,
+                                        target_name='origin',
+                                        expected_colour='orange',
+                                        stop_distance=1.0,
+                                        verify_timeout=2.0)),
+
+                # Step 5 — Drive to medical kit
                 step('GoToMedKit', 't1_medkit_reached',
                      NavigateToVerified('GoToMedKit', self,
                                         target_name='medical_kit',
                                         expected_colour='yellow',
-                                        stop_distance=0.5)),
+                                        stop_distance=0.5,
+                                        verify_timeout=20.0)),
+
+                # Step 6 — Return to origin before heading north-east
+                step('ToOrigin2', 't1_origin2_reached',
+                     NavigateToVerified('ToOrigin2', self,
+                                        target_name='origin',
+                                        expected_colour='orange',
+                                        stop_distance=1.0,
+                                        verify_timeout=2.0)),
+
+                # Step 7 — Return to survivor
                 step('ReturnToSurvivor', 't1_returned',
                      NavigateToVerified('ReturnToSurvivor', self,
                                         target_name='survivor',
                                         expected_colour='green',
-                                        stop_distance=1.0)),
+                                        stop_distance=1.0,
+                                        verify_timeout=15.0)),
+
                 MarkTaskDone('MarkTask1Done', self, 'task1_done'),
             ]
         )
@@ -603,7 +654,7 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task1Skip', self, 'task1_done'), task1_inner]
         )
 
-        # ── Task 2: Scan Dam ──
+        # ── Task 2: Scan Dam ───────────────────────────────────────────────
         task2_inner = py_trees.composites.Sequence(
             name='Task2_ScanDam', memory=True,
             children=[
@@ -611,7 +662,8 @@ class BTRunner(Node):
                      NavigateToVerified('GoToDam', self,
                                         target_name='dam',
                                         expected_colour='blue',
-                                        stop_distance=0.5)),
+                                        stop_distance=0.5,
+                                        verify_timeout=15.0)),
                 step('RotateLeft', 't2_rotated_left',
                      RotateRobot('RotateLeft10', self, degrees=10)),
                 step('RotateRight', 't2_rotated_right',
@@ -625,7 +677,7 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task2Skip', self, 'task2_done'), task2_inner]
         )
 
-        # ── Task 5: Exit Building ──
+        # ── Task 5: Exit Building ──────────────────────────────────────────
         task5_inner = py_trees.composites.Sequence(
             name='Task5_Exit', memory=True,
             children=[
@@ -633,7 +685,8 @@ class BTRunner(Node):
                      NavigateToVerified('GoToExit', self,
                                         target_name='exit',
                                         expected_colour='purple',
-                                        stop_distance=0.3)),
+                                        stop_distance=0.3,
+                                        verify_timeout=15.0)),
                 MarkTaskDone('MarkTask5Done', self, 'task5_done'),
                 StopAndWait(self),
             ]
@@ -644,7 +697,7 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task5Skip', self, 'task5_done'), task5_inner]
         )
 
-        # ── Mission root ──
+        # ── Mission root ───────────────────────────────────────────────────
         root = py_trees.composites.Sequence(
             name='Mission', memory=False,
             children=[
