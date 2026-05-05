@@ -1,0 +1,22 @@
+[0.061s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/gazebo_worlds -- -j12 -l12
+[0.320s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/gazebo_worlds -- -j12 -l12
+[0.324s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/gazebo_worlds
+[0.362s] -- Install configuration: ""
+[0.363s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/worlds
+[0.363s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/worlds/assignment_world.sdf
+[0.364s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/ament_index/resource_index/package_run_dependencies/gazebo_worlds
+[0.367s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/ament_index/resource_index/parent_prefix_path/gazebo_worlds
+[0.371s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.sh
+[0.373s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/environment/ament_prefix_path.dsv
+[0.375s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/environment/path.sh
+[0.377s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/environment/path.dsv
+[0.380s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/local_setup.bash
+[0.381s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/local_setup.sh
+[0.382s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/local_setup.zsh
+[0.385s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/local_setup.dsv
+[0.389s] -- Installing: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.dsv
+[0.391s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/ament_index/resource_index/packages/gazebo_worlds
+[0.395s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig.cmake
+[0.396s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/cmake/gazebo_worldsConfig-version.cmake
+[0.397s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.xml
+[0.420s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/gazebo_worlds
