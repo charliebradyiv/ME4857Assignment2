@@ -198,17 +198,17 @@ bt_uninstall/fast:
 .PHONY : bt_uninstall/fast
 
 #=============================================================================
-# Target rules for targets named ament_cmake_python_copy_bt_nodes
+# Target rules for targets named ament_cmake_python_symlink_bt_nodes
 
 # Build rule for target.
-ament_cmake_python_copy_bt_nodes: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_copy_bt_nodes
-.PHONY : ament_cmake_python_copy_bt_nodes
+ament_cmake_python_symlink_bt_nodes: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_symlink_bt_nodes
+.PHONY : ament_cmake_python_symlink_bt_nodes
 
 # fast build rule for target.
-ament_cmake_python_copy_bt_nodes/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_bt_nodes.dir/build.make CMakeFiles/ament_cmake_python_copy_bt_nodes.dir/build
-.PHONY : ament_cmake_python_copy_bt_nodes/fast
+ament_cmake_python_symlink_bt_nodes/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_bt_nodes.dir/build.make CMakeFiles/ament_cmake_python_symlink_bt_nodes.dir/build
+.PHONY : ament_cmake_python_symlink_bt_nodes/fast
 
 #=============================================================================
 # Target rules for targets named ament_cmake_python_build_bt_nodes_egg
@@ -237,7 +237,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... ament_cmake_python_build_bt_nodes_egg"
-	@echo "... ament_cmake_python_copy_bt_nodes"
+	@echo "... ament_cmake_python_symlink_bt_nodes"
 	@echo "... bt_uninstall"
 	@echo "... uninstall"
 .PHONY : help

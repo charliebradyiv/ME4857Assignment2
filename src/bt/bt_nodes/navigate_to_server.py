@@ -6,8 +6,8 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Bool
-from std_msgs.msg import Float32
+from std_msgs.msg import Bool, Float32
+from sensor_msgs.msg import Imu
 from sr_interfaces.action import NavigateToWaypoint
 import math
 import threading
@@ -17,65 +17,75 @@ import time
 class NavigateToServer(Node):
     """
     Action server that drives the robot to one of a set of HARDCODED waypoint
-    coordinates while using the LiDAR for obstacle avoidance.
+    coordinates while using the LiDAR for obstacle avoidance and the IMU for
+    wheel-slip detection.
 
     Architecture (per project brief):
       - Waypoints are predefined (the brief explicitly permits a waypoint
         system: 'A predefined waypoint system' is listed as acceptable).
-      - The LiDAR is used as a sensor for two purposes:
-          1) ARRIVAL CONFIRMATION (sanity check): when odometry says we've
-             reached the waypoint, we also check the LiDAR sees an object
-             nearby. The arrival is recorded with both readings logged.
-          2) OBSTACLE AVOIDANCE: a wall-follow state machine engages when
-             something appears within 0.5m in front. The robot picks the
-             side with more clearance, rotates so the obstacle is on the
-             other side, and then drives forward maintaining roughly 0.5m
-             from the wall. Resumes direct navigation when the path clears.
+      - The LiDAR is used for obstacle avoidance via a wall-follow state
+        machine that engages when something appears within AVOID_TRIGGER
+        metres in front.
+      - The IMU's linear_acceleration.x is monitored during forward motion.
+        If the robot is commanding forward velocity but the IMU sees no
+        measurable acceleration for more than SLIP_TIMEOUT seconds, the
+        wheels are inferred to be spinning against an obstacle (wheel slip).
+        The robot backs up and rotates to escape before resuming navigation.
+        This prevents odometry drift from accumulated encoder counts while
+        the robot is physically stuck.
 
     The action interface is custom (sr_interfaces/NavigateToWaypoint).
     """
 
     # ── Tunables ─────────────────────────────────────────
-    AVOID_TRIGGER = 0.5      # m — front distance at which we enter wall-follow
-    AVOID_RESUME_FRONT = 1.0 # m — front clearance needed to resume direct
-    WALL_DIST = 0.5          # m — target distance from wall during follow
-    AVOID_TIMEOUT = 30.0     # s — give up wall-follow after this, try direct
-    LIDAR_CONFIRM_SLOP = 1.0 # m — LiDAR must see object within stop+slop
+    AVOID_TRIGGER        = 0.5   # m  — front distance to enter wall-follow
+    AVOID_RESUME_FRONT   = 1.0   # m  — front clearance to exit wall-follow
+    WALL_DIST            = 0.5   # m  — target side distance during follow
+    AVOID_TIMEOUT        = 30.0  # s  — give up wall-follow, try direct
+    LIDAR_CONFIRM_SLOP   = 1.0   # m  — LiDAR confirm slop on top of stop dist
+    SLIP_ACCEL_THRESHOLD = 0.08  # m/s² — below this = not accelerating
+    SLIP_TIMEOUT         = 3.0   # s  — seconds of no acceleration = stuck
 
     def __init__(self):
         super().__init__('navigate_to_server')
 
         # Hardcoded waypoint coordinates (world frame, metres)
         self.waypoints = {
-            'survivor':    (15.1, 13.4),
+            'survivor':    (15.1,  13.4),
             'medical_kit': (-6.3, -16.9),
-            'dam':         (8.7, -11.6),
-            'exit':        (2.9, 17.2),
-            'dock':        (24.89, 0.0),
+            'dam':         (8.7,  -11.6),
+            'exit':        (2.9,   17.2),
+            'dock':        (24.89,  0.0),
         }
 
-        # Pose
-        self.robot_x = 0.0
-        self.robot_y = 0.0
+        # Pose (updated by /odom)
+        self.robot_x   = 0.0
+        self.robot_y   = 0.0
         self.robot_yaw = 0.0
         self._lock = threading.Lock()
 
-        # LiDAR-derived fields (populated by subscribers)
-        self.obstacle_in_front = False
+        # LiDAR-derived fields
+        self.obstacle_in_front       = False
         self.front_obstacle_distance = float('inf')
-        self.left_obstacle_distance = float('inf')
+        self.left_obstacle_distance  = float('inf')
         self.right_obstacle_distance = float('inf')
 
-        # Preemption infrastructure
-        self._preempt = threading.Event()
+        # IMU — used to detect wheel slip
+        # If forward motion is commanded but IMU shows no acceleration,
+        # the wheels are spinning against an obstacle.
+        self.imu_accel_x  = 0.0
+        self.imu_received = False
+
+        # Preemption
+        self._preempt  = threading.Event()
         self._nav_lock = threading.Lock()
 
         cb_group = ReentrantCallbackGroup()
 
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
-        self.create_subscription(Odometry, '/odom', self.odom_cb, 10,
-                                 callback_group=cb_group)
+        self.create_subscription(Odometry, '/odom',
+                                 self.odom_cb, 10, callback_group=cb_group)
         self.create_subscription(Bool, '/obstacle_in_front',
                                  self.obstacle_cb, 10, callback_group=cb_group)
         self.create_subscription(Float32, '/front_obstacle_distance',
@@ -84,6 +94,8 @@ class NavigateToServer(Node):
                                  self.left_dist_cb, 10, callback_group=cb_group)
         self.create_subscription(Float32, '/right_obstacle_distance',
                                  self.right_dist_cb, 10, callback_group=cb_group)
+        self.create_subscription(Imu, '/imu',
+                                 self.imu_cb, 10, callback_group=cb_group)
 
         self._action_server = ActionServer(
             self, NavigateToWaypoint, 'navigate_to_waypoint',
@@ -96,9 +108,9 @@ class NavigateToServer(Node):
 
     # ── Goal lifecycle ──────────────────────────────────
     def _handle_goal(self, goal_request):
-     if self._nav_lock.locked():
-        self._preempt.set()
-     return GoalResponse.ACCEPT
+        if self._nav_lock.locked():
+            self._preempt.set()
+        return GoalResponse.ACCEPT
 
     def _handle_cancel(self, goal_handle):
         return CancelResponse.ACCEPT
@@ -125,6 +137,12 @@ class NavigateToServer(Node):
     def right_dist_cb(self, msg):
         self.right_obstacle_distance = msg.data
 
+    def imu_cb(self, msg):
+        # Forward acceleration in the robot's body frame.
+        # Near zero when stuck; clearly non-zero when actually moving.
+        self.imu_accel_x  = msg.linear_acceleration.x
+        self.imu_received = True
+
     # ── Helpers ─────────────────────────────────────────
     def get_pose(self):
         with self._lock:
@@ -146,12 +164,29 @@ class NavigateToServer(Node):
     def stop(self):
         self.cmd_vel_pub.publish(Twist())
 
+    def _escape_from_wall(self):
+        """Back up then rotate to break free from a wall contact."""
+        self.get_logger().warn('Wheel slip confirmed — backing up to escape')
+        escape = Twist()
+        # Back up
+        escape.linear.x = -0.2
+        for _ in range(10):
+            self.cmd_vel_pub.publish(escape)
+            time.sleep(0.1)
+        # Rotate away
+        escape.linear.x  = 0.0
+        escape.angular.z = 0.5
+        for _ in range(10):
+            self.cmd_vel_pub.publish(escape)
+            time.sleep(0.1)
+        self.stop()
+
     # ── Main execute callback ───────────────────────────
     def execute_cb(self, goal_handle):
         with self._nav_lock:
             self._preempt.clear()
 
-            target = goal_handle.request.target_name
+            target        = goal_handle.request.target_name
             stop_distance = goal_handle.request.stop_distance
 
             self.get_logger().info(
@@ -169,12 +204,19 @@ class NavigateToServer(Node):
             tx, ty = self.waypoints[target]
             feedback = NavigateToWaypoint.Feedback()
 
-            # State machine variables for wall-follow
-            mode = 'NORMAL'
-            follow_side = None       
+            # ── State machine ────────────────────────────
+            mode             = 'NORMAL'
+            follow_side      = None
             avoid_start_time = None
 
+            # IMU wheel-slip timer
+            # Tracks when we last had meaningful forward acceleration.
+            # Reset whenever we rotate or are in wall-follow mode.
+            slip_start = None
+
             while rclpy.ok():
+
+                # ── Preemption ───────────────────────────
                 if self._preempt.is_set():
                     self.stop()
                     goal_handle.abort()
@@ -189,7 +231,7 @@ class NavigateToServer(Node):
                 feedback.distance_remaining = dist
                 goal_handle.publish_feedback(feedback)
 
-                # ── Arrival check (odometry is the source of truth) ──
+                # ── Arrival check ────────────────────────
                 if dist <= stop_distance:
                     self.stop()
                     front = self.front_obstacle_distance
@@ -211,22 +253,24 @@ class NavigateToServer(Node):
                     return result
 
                 # Heading toward goal
-                target_angle = math.atan2(ty - y, tx - x)
+                target_angle  = math.atan2(ty - y, tx - x)
                 heading_error = self.angle_diff(target_angle, yaw)
 
-                # ── State transitions ──
+                # ── NORMAL mode ──────────────────────────
                 if mode == 'NORMAL':
-                    # Trigger AVOID if obstacle ahead
-                    if self.front_obstacle_distance < self.AVOID_TRIGGER:
-                        # Pick the side with MORE clearance to turn into.
-                        # If left is clearer, we turn left and the wall ends
-                        # up on our right — so we follow the right wall.
+
+                    # Disable wall-follow when close to goal —
+                    # the obstacle in front IS likely the target.
+                    near_goal = dist <= 2.0
+
+                    if self.front_obstacle_distance < self.AVOID_TRIGGER and not near_goal:
                         if self.left_obstacle_distance > self.right_obstacle_distance:
                             follow_side = 'right'
                         else:
                             follow_side = 'left'
-                        mode = 'AVOID'
+                        mode             = 'AVOID'
                         avoid_start_time = time.time()
+                        slip_start       = None   # reset slip timer — entering avoidance
                         self.get_logger().info(
                             f'Obstacle at {self.front_obstacle_distance:.2f}m — '
                             f'wall-follow on {follow_side} side '
@@ -236,68 +280,87 @@ class NavigateToServer(Node):
                         time.sleep(0.1)
                         continue
 
-                    # Drive toward goal: rotate to face it, then forward
+                    # Drive toward goal
                     twist = Twist()
                     if abs(heading_error) > 0.3:
-                        twist.linear.x = 0.0
+                        # Rotating — reset slip timer, we're not driving forward
+                        twist.linear.x  = 0.0
                         twist.angular.z = self.clamp(heading_error * 1.5, -0.8, 0.8)
+                        slip_start = None
                     else:
-                        twist.linear.x = min(0.6, dist * 0.5)
+                        twist.linear.x  = min(0.6, dist * 0.5)
                         twist.angular.z = heading_error * 0.5
+
+                        # ── IMU wheel-slip detection ──────────────
+                        # Commanding forward motion — check the IMU actually
+                        # sees forward acceleration. If not for SLIP_TIMEOUT
+                        # seconds, the robot is stuck against something.
+                        if self.imu_received:
+                            if abs(self.imu_accel_x) < self.SLIP_ACCEL_THRESHOLD:
+                                if slip_start is None:
+                                    slip_start = time.time()
+                                elif time.time() - slip_start > self.SLIP_TIMEOUT:
+                                    self.get_logger().warn(
+                                        f'Wheel slip detected to {target} '
+                                        f'(IMU accel={self.imu_accel_x:.3f} m/s², '
+                                        f'odom dist={dist:.2f}m)'
+                                    )
+                                    self._escape_from_wall()
+                                    slip_start = None
+                                    continue
+                            else:
+                                slip_start = None  # moving — reset timer
+
                     self.cmd_vel_pub.publish(twist)
 
-                else:  # mode == 'AVOID'
-                    # Timeout — give up and try the direct path again
+                # ── AVOID mode ───────────────────────────
+                else:
+                    # Timeout — give up and try direct path
                     if time.time() - avoid_start_time > self.AVOID_TIMEOUT:
                         self.get_logger().warn(
                             'Wall-follow timeout — returning to direct navigation'
                         )
-                        mode = 'NORMAL'
+                        mode        = 'NORMAL'
                         follow_side = None
+                        slip_start  = None
                         time.sleep(0.1)
                         continue
 
-                    # Resume direct: front clear AND heading roughly toward goal
-                    front_clear = (self.front_obstacle_distance >
-                                   self.AVOID_RESUME_FRONT)
+                    # Resume direct when front is clear and heading is good
+                    front_clear    = self.front_obstacle_distance > self.AVOID_RESUME_FRONT
                     aligned_to_goal = abs(heading_error) < 0.6
                     if front_clear and aligned_to_goal:
                         self.get_logger().info(
                             f'Path clear (front={self.front_obstacle_distance:.2f}m) '
                             f'— resuming direct navigation'
                         )
-                        mode = 'NORMAL'
+                        mode        = 'NORMAL'
                         follow_side = None
+                        slip_start  = None
                         time.sleep(0.1)
                         continue
 
                     # Wall-follow: drive forward, steer to maintain WALL_DIST
-                    # on follow_side. Errors:
-                    #   too close to wall  -> steer AWAY from wall
-                    #   too far from wall  -> steer TOWARD wall
                     twist = Twist()
                     twist.linear.x = 0.2
 
                     if follow_side == 'right':
-                        side_dist = self.right_obstacle_distance
-
-                        error = side_dist - self.WALL_DIST
+                        error           = self.right_obstacle_distance - self.WALL_DIST
                         twist.angular.z = self.clamp(-error * 1.0, -0.5, 0.5)
                     else:
-                        side_dist = self.left_obstacle_distance
-                        error = side_dist - self.WALL_DIST
+                        error           = self.left_obstacle_distance - self.WALL_DIST
                         twist.angular.z = self.clamp(error * 1.0, -0.5, 0.5)
 
-
+                    # Emergency corner rotation
                     if self.front_obstacle_distance < 0.3:
-                        twist.linear.x = 0.0
+                        twist.linear.x  = 0.0
                         twist.angular.z = 0.6 if follow_side == 'right' else -0.6
 
                     self.cmd_vel_pub.publish(twist)
 
                 time.sleep(0.1)
 
-            # Loop exited (rclpy not OK)
+            # rclpy shut down
             self.stop()
             goal_handle.abort()
             result = NavigateToWaypoint.Result()

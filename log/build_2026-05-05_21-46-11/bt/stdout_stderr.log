@@ -1,0 +1,9 @@
+-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/fintan/ME4857Assignment2-master/build/bt
+failed to create symbolic link '/home/fintan/ME4857Assignment2-master/build/bt/ament_cmake_python/bt_nodes/bt_nodes' because existing path cannot be removed: Is a directory
+gmake[2]: *** [CMakeFiles/ament_cmake_python_symlink_bt_nodes.dir/build.make:70: CMakeFiles/ament_cmake_python_symlink_bt_nodes] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:138: CMakeFiles/ament_cmake_python_symlink_bt_nodes.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

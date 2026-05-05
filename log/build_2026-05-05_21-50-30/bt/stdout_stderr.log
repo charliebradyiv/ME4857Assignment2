@@ -1,0 +1,71 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done (16.7s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/fintan/ME4857Assignment2-master/build/bt
+Built target ament_cmake_python_symlink_bt_nodes
+running egg_info
+creating bt_nodes.egg-info
+writing bt_nodes.egg-info/PKG-INFO
+writing dependency_links to bt_nodes.egg-info/dependency_links.txt
+writing top-level names to bt_nodes.egg-info/top_level.txt
+writing manifest file 'bt_nodes.egg-info/SOURCES.txt'
+reading manifest file 'bt_nodes.egg-info/SOURCES.txt'
+writing manifest file 'bt_nodes.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_bt_nodes_egg
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.sh
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.dsv
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/PKG-INFO
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/SOURCES.txt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/dependency_links.txt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/top_level.txt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/__init__.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/battery_monitor.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/bt_runner.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/camera_colour_detector.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/cmd_vel_converter.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/fire_safety.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/navigate_to_server.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/obstacle_monitor.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/tf_publisher.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/bt_xml/bt.xml
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/launch/bt_launch.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/bt_runner.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/battery_monitor.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/fire_safety.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/tf_publisher.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/navigate_to_server.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/obstacle_monitor.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/cmd_vel_converter.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/camera_colour_detector.py
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/package_run_dependencies/bt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/parent_prefix_path/bt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.sh
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.dsv
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.sh
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.dsv
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.bash
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.sh
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.zsh
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.dsv
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.dsv
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/packages/bt
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig.cmake
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig-version.cmake
+-- Symlinking: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.xml
+Listing '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes'...

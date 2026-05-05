@@ -22,23 +22,33 @@ def generate_launch_description():
             name='obstacle_monitor',
             output='screen',
         ),
-     
         Node(
             package='bt',
             executable='camera_colour_detector.py',
             name='camera_colour_detector',
             output='screen',
+            parameters=[{'min_area': 1500.0}],
         ),
+        Node(
+            package='bt',
+            executable='fire_safety.py',
+            name='fire_safety',
+            output='screen',
+        ),
+
+        Node(
+            package='bt',
+            executable='cmd_vel_converter.py',
+            name='cmd_vel_converter',
+            output='screen',
+        ),
+
         Node(
             package='bt',
             executable='bt_runner.py',
             name='bt_runner',
             output='screen',
         ),
-        Node(
-             package='bt',
-             executable='fire_safety.py',
-              name='fire_safety',
-              output='screen',
-            ),
-])
+        # NOTE: battery_monitor.py intentionally excluded.
+
+    ])

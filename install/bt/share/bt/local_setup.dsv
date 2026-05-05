@@ -1,3 +1,1 @@
-source;share/bt/environment/ament_prefix_path.sh
-source;share/bt/environment/path.sh
-source;share/bt/environment/pythonpath.sh
+/home/fintan/ME4857Assignment2-master/build/bt/ament_cmake_environment_hooks/local_setup.dsv
