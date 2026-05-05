@@ -96,9 +96,9 @@ class NavigateToServer(Node):
 
     # ── Goal lifecycle ──────────────────────────────────
     def _handle_goal(self, goal_request):
-        # Signal any in-flight goal to abort, then accept the new one
+     if self._nav_lock.locked():
         self._preempt.set()
-        return GoalResponse.ACCEPT
+     return GoalResponse.ACCEPT
 
     def _handle_cancel(self, goal_handle):
         return CancelResponse.ACCEPT

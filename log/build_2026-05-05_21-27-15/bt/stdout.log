@@ -1,0 +1,82 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Configuring done (5.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/fintan/ME4857Assignment2-master/build/bt
+Built target ament_cmake_python_copy_bt_nodes
+running egg_info
+creating bt_nodes.egg-info
+writing bt_nodes.egg-info/PKG-INFO
+writing dependency_links to bt_nodes.egg-info/dependency_links.txt
+writing top-level names to bt_nodes.egg-info/top_level.txt
+writing manifest file 'bt_nodes.egg-info/SOURCES.txt'
+reading manifest file 'bt_nodes.egg-info/SOURCES.txt'
+writing manifest file 'bt_nodes.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_bt_nodes_egg
+-- Install configuration: ""
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.sh
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.dsv
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/SOURCES.txt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/dependency_links.txt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/PKG-INFO
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/top_level.txt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/__init__.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/cmd_vel_converter.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/fire_safety.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/tf_publisher.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/bt_runner.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/battery_monitor.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/camera_colour_detector.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/navigate_to_server.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/obstacle_monitor.py
+Listing '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/__init__.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/battery_monitor.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/bt_runner.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/camera_colour_detector.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/cmd_vel_converter.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/fire_safety.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/navigate_to_server.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/obstacle_monitor.py'...
+Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/tf_publisher.py'...
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/bt_xml
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/bt_xml/bt.xml
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/launch
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/launch/bt_launch.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/bt_runner.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/battery_monitor.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/fire_safety.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/tf_publisher.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/navigate_to_server.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/obstacle_monitor.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/cmd_vel_converter.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/camera_colour_detector.py
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/package_run_dependencies/bt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/parent_prefix_path/bt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.sh
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.dsv
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.sh
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.dsv
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.bash
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.sh
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.zsh
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.dsv
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.dsv
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/packages/bt
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig.cmake
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig-version.cmake
+-- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.xml

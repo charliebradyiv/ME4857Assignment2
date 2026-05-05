@@ -1,0 +1,55 @@
+[0.091s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/robot_model
+[0.743s] -- The C compiler identification is GNU 13.3.0
+[2.844s] -- The CXX compiler identification is GNU 13.3.0
+[3.841s] -- Detecting C compiler ABI info
+[4.720s] -- Detecting C compiler ABI info - done
+[4.757s] -- Check for working C compiler: /usr/bin/cc - skipped
+[4.759s] -- Detecting C compile features
+[4.762s] -- Detecting C compile features - done
+[5.220s] -- Detecting CXX compiler ABI info
+[6.067s] -- Detecting CXX compiler ABI info - done
+[6.123s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[6.124s] -- Detecting CXX compile features
+[6.125s] -- Detecting CXX compile features - done
+[6.179s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[6.824s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[7.695s] -- Configuring done (7.6s)
+[7.712s] -- Generating done (0.0s)
+[7.720s] -- Build files have been written to: /home/fintan/ME4857Assignment2-master/build/robot_model
+[7.730s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/robot_model
+[7.733s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/robot_model -- -j12 -l12
+[7.841s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/robot_model -- -j12 -l12
+[7.861s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/robot_model
+[7.882s] -- Install configuration: ""
+[7.882s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/urdf
+[7.884s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/urdf/robot_model.urdf
+[7.885s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/urdf/robot_model.csv
+[7.885s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes
+[7.886s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_BR.STL
+[7.888s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/base_link.STL
+[7.888s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_MR.STL
+[7.890s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_ML.STL
+[7.892s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_FL.STL
+[7.893s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_BL.STL
+[7.897s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/meshes/link_FR.STL
+[7.900s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/launch
+[7.901s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/launch/display.launch.py
+[7.901s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/launch/gazebo.launch.py
+[7.902s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/config
+[7.903s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/config/controllers.yaml
+[7.906s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/ament_index/resource_index/package_run_dependencies/robot_model
+[7.907s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/ament_index/resource_index/parent_prefix_path/robot_model
+[7.907s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/environment/ament_prefix_path.sh
+[7.908s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/environment/ament_prefix_path.dsv
+[7.908s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/environment/path.sh
+[7.909s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/environment/path.dsv
+[7.910s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/local_setup.bash
+[7.910s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/local_setup.sh
+[7.911s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/local_setup.zsh
+[7.912s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/local_setup.dsv
+[7.912s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.dsv
+[7.914s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/ament_index/resource_index/packages/robot_model
+[7.915s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/cmake/robot_modelConfig.cmake
+[7.916s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/cmake/robot_modelConfig-version.cmake
+[7.916s] -- Installing: /home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.xml
+[7.921s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/robot_model

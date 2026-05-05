@@ -8,6 +8,7 @@ from std_msgs.msg import Bool, String, Float32
 from std_srvs.srv import Trigger
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
+from sensor_msgs.msg import LaserScan
 
 from sr_interfaces.action import NavigateToWaypoint
 
@@ -19,6 +20,47 @@ import math
 # ─────────────────────────────────────────────
 # Behaviours
 # ─────────────────────────────────────────────
+
+class WaitForSensors(py_trees.behaviour.Behaviour):
+    """
+    Blocks the BT from starting until all required sensor nodes have
+    published at least one message. Prevents acting on uninitialised state.
+
+    Waits for:
+      - /fire_safe  (fire_safety.py must be running)
+      - /odom       (diff_drive_controller must be active)
+      - /scan       (LiDAR bridge must be active)
+    """
+
+    def __init__(self, node):
+        super().__init__('WaitForSensors')
+        self.node = node
+
+    def update(self):
+        ready = (
+            self.node.fire_safe_received and
+            self.node.odom_received and
+            self.node.scan_received
+        )
+
+        if ready:
+            self.node.get_logger().info('All sensors ready — starting mission')
+            return py_trees.common.Status.SUCCESS
+
+        waiting_for = []
+        if not self.node.fire_safe_received:
+            waiting_for.append('fire_safety (/fire_safe)')
+        if not self.node.odom_received:
+            waiting_for.append('odometry (/odom)')
+        if not self.node.scan_received:
+            waiting_for.append('lidar (/scan)')
+
+        self.node.get_logger().info(
+            f'Waiting for: {", ".join(waiting_for)}',
+            throttle_duration_sec=2.0
+        )
+        return py_trees.common.Status.RUNNING
+
 
 class BatteryOK(py_trees.behaviour.Behaviour):
     def __init__(self, node):
@@ -32,6 +74,10 @@ class BatteryOK(py_trees.behaviour.Behaviour):
 
 
 class FireSafe(py_trees.behaviour.Behaviour):
+    """
+    Reads fire safety status from /fire_safe published by fire_safety.py.
+    fire_safety.py owns all distance logic — this just reads the flag.
+    """
     def __init__(self, node):
         super().__init__('FireSafe')
         self.node = node
@@ -44,18 +90,25 @@ class FireSafe(py_trees.behaviour.Behaviour):
 
 
 class RetreatFromFire(py_trees.behaviour.Behaviour):
-    BUFFER = 0.5
+    """
+    Drives the robot away from the fire when FireSafe fails.
+    Fire coordinates kept as constants for retreat direction calculation.
+    """
+    FIRE_X   = -14.2
+    FIRE_Y   = 10.8
+    MIN_DIST = 3.0
+    BUFFER   = 0.5
 
     def __init__(self, node):
         super().__init__('RetreatFromFire')
         self.node = node
 
     def update(self):
-        dx = self.node.robot_x - self.node.fire_x
-        dy = self.node.robot_y - self.node.fire_y
+        dx = self.node.robot_x - self.FIRE_X
+        dy = self.node.robot_y - self.FIRE_Y
         dist = math.sqrt(dx * dx + dy * dy)
 
-        if dist >= self.node.fire_min_dist + self.BUFFER:
+        if dist >= self.MIN_DIST + self.BUFFER:
             self.node.cmd_vel_pub.publish(Twist())
             self.node.get_logger().info(
                 f'Fire retreat complete — {dist:.2f}m from fire'
@@ -75,77 +128,8 @@ class RetreatFromFire(py_trees.behaviour.Behaviour):
 
         self.node.cmd_vel_pub.publish(twist)
         self.node.get_logger().warn(
-            f'Retreating from fire — {dist:.2f}m of {self.node.fire_min_dist}m',
+            f'Retreating from fire — {dist:.2f}m of {self.MIN_DIST}m',
             throttle_duration_sec=1.0
-        )
-        return py_trees.common.Status.RUNNING
-
-    def terminate(self, new_status):
-        self.node.cmd_vel_pub.publish(Twist())
-
-
-class ScanEnvironment(py_trees.behaviour.Behaviour):
-    """
-    Rotates 360 degrees at startup to get an overview of the environment.
-    Records the best bearing for each colour seen.
-    Scan progress stored on node so interruptions don't reset it.
-    """
-
-    FULL_ROTATION = 2.0 * math.pi
-    SCAN_SPEED    = 0.3
-    HALF_FOV      = 0.52
-
-    def __init__(self, node):
-        super().__init__('ScanEnvironment')
-        self.node = node
-        self._last_yaw = None
-
-    def initialise(self):
-        if not hasattr(self.node, '_scan_rotated'):
-            self.node._scan_rotated    = 0.0
-            self.node._scan_best_areas = {}
-            self.node.colour_bearings  = {}
-            self.node.get_logger().info('ScanEnvironment: starting 360 degree scan')
-        else:
-            self.node.get_logger().info(
-                f'ScanEnvironment: resuming at '
-                f'{math.degrees(self.node._scan_rotated):.0f} deg'
-            )
-        self._last_yaw = self.node.robot_yaw
-
-    def update(self):
-        current_yaw = self.node.robot_yaw
-        delta = self.node.angle_diff(current_yaw, self._last_yaw)
-        self.node._scan_rotated += abs(delta)
-        self._last_yaw = current_yaw
-
-        if self.node.colour_visible and self.node.detected_colour != 'none':
-            colour = self.node.detected_colour
-            area   = self.node.colour_area
-            if area > self.node._scan_best_areas.get(colour, 0.0):
-                self.node._scan_best_areas[colour] = area
-                bearing = current_yaw - self.node.colour_offset_x * self.HALF_FOV
-                self.node.colour_bearings[colour] = bearing
-                self.node.get_logger().info(
-                    f'Scan: {colour} at yaw={math.degrees(current_yaw):.1f} deg  '
-                    f'bearing={math.degrees(bearing):.1f} deg  area={area:.0f}'
-                )
-
-        if self.node._scan_rotated >= self.FULL_ROTATION:
-            self.node.cmd_vel_pub.publish(Twist())
-            del self.node._scan_rotated
-            del self.node._scan_best_areas
-            self.node.get_logger().info(
-                f'Scan complete. Found: {list(self.node.colour_bearings.keys())}'
-            )
-            return py_trees.common.Status.SUCCESS
-
-        twist = Twist()
-        twist.angular.z = self.SCAN_SPEED
-        self.node.cmd_vel_pub.publish(twist)
-        self.node.get_logger().info(
-            f'Scanning... {math.degrees(self.node._scan_rotated):.0f} / 360 deg',
-            throttle_duration_sec=2.0
         )
         return py_trees.common.Status.RUNNING
 
@@ -165,11 +149,7 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
     Phase 2 — VERIFY:
       Once the waypoint is reached, the camera confirms the expected colour
       is visible. Rotates slowly to search if not immediately in view.
-      Times out after verify_timeout seconds.
-
-    This combines the reliability of known coordinates with the accuracy
-    of camera verification — the robot knows WHERE to go and confirms
-    it has found the RIGHT object.
+      Times out after verify_timeout seconds and proceeds anyway.
     """
 
     def __init__(self, name, node, target_name, expected_colour,
@@ -181,7 +161,7 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
         self.stop_distance   = stop_distance
         self.verify_timeout  = verify_timeout
 
-        self._client = ActionClient(node, NavigateToWaypoint, 'navigate_to_waypoint')
+        self._client       = ActionClient(node, NavigateToWaypoint, 'navigate_to_waypoint')
         self._goal_handle  = None
         self._result       = None
         self._sent         = False
@@ -230,7 +210,6 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
                 )
                 return py_trees.common.Status.FAILURE
 
-            # Navigation succeeded — move to verification
             self.node.get_logger().info(
                 f'Reached {self.target_name} waypoint — verifying with camera'
             )
@@ -239,7 +218,6 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
 
         # ── Phase 2: VERIFY ─────────────────────────────────────────────────
         if self._phase == 'VERIFY':
-            # Colour confirmed
             if (self.node.colour_visible and
                     self.node.detected_colour == self.expected_colour):
                 self.node.cmd_vel_pub.publish(Twist())
@@ -248,7 +226,6 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
                 )
                 return py_trees.common.Status.SUCCESS
 
-            # Timeout — accept position even without perfect colour confirmation
             if time.time() - self._verify_start > self.verify_timeout:
                 self.node.cmd_vel_pub.publish(Twist())
                 self.node.get_logger().warn(
@@ -258,11 +235,9 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
                 )
                 return py_trees.common.Status.SUCCESS
 
-            # Rotate slowly to find the colour
             twist = Twist()
             if (self.node.colour_visible and
                     self.node.detected_colour == self.expected_colour):
-                # Centre it
                 twist.angular.z = -0.4 * self.node.colour_offset_x
             else:
                 twist.angular.z = 0.25
@@ -290,9 +265,7 @@ class NavigateToVerified(py_trees.behaviour.Behaviour):
             result_future = self._goal_handle.get_result_async()
             result_future.add_done_callback(self._result_cb)
         else:
-            self.node.get_logger().error(
-                f'Goal to {self.target_name} rejected'
-            )
+            self.node.get_logger().error(f'Goal to {self.target_name} rejected')
 
     def _result_cb(self, future):
         self._result = future.result().result
@@ -418,17 +391,21 @@ class BTRunner(Node):
     def __init__(self):
         super().__init__('bt_runner')
 
-        # Robot state
-        self.battery_low    = False
-        self.fire_too_close = False
-        self.robot_x        = 0.0
-        self.robot_y        = 0.0
-        self.robot_yaw      = 0.0
+        # Robot pose
+        self.robot_x   = 0.0
+        self.robot_y   = 0.0
+        self.robot_yaw = 0.0
 
-        # Fire position
-        self.fire_x        = -14.2
-        self.fire_y        = 10.8
-        self.fire_min_dist = 3.0
+        # Fire safety — driven by /fire_safe from fire_safety.py
+        self.fire_too_close = False
+
+        # Sensor ready flags — WaitForSensors blocks until all True
+        self.fire_safe_received = False
+        self.odom_received      = False
+        self.scan_received      = False
+
+        # Battery
+        self.battery_low = False
 
         # Camera state
         self.detected_colour = 'none'
@@ -439,14 +416,11 @@ class BTRunner(Node):
         # LiDAR state
         self.front_obstacle_distance = float('inf')
 
-        # Bearings from startup scan (used for awareness, not primary navigation)
-        self.colour_bearings = {}
-
         # Task flags
-        self.scan_done  = False
-        self.task1_done = False
-        self.task2_done = False
-        self.task5_done = False
+        self.sensor_wait_done = False
+        self.task1_done       = False
+        self.task2_done       = False
+        self.task5_done       = False
 
         # Task 1 step flags
         self.t1_survivor_reached = False
@@ -470,20 +444,26 @@ class BTRunner(Node):
         self.survivor_tf_client = self.create_client(Trigger, 'publish_survivor_tf')
 
         # Subscriptions
-        self.create_subscription(Bool,     '/battery_level_low',       self.battery_cb,        10)
-        self.create_subscription(Odometry, '/odom',                    self.odom_cb,            10)
-        self.create_subscription(String,   '/detected_colour',         self.detected_colour_cb, 10)
-        self.create_subscription(Bool,     '/colour_visible',          self.colour_visible_cb,  10)
-        self.create_subscription(Float32,  '/colour_offset_x',         self.colour_offset_cb,   10)
-        self.create_subscription(Float32,  '/colour_area',             self.colour_area_cb,     10)
-        self.create_subscription(Float32,  '/front_obstacle_distance', self.front_dist_cb,      10)
+        self.create_subscription(Bool,     '/fire_safe',              self.fire_safe_cb,       10)
+        self.create_subscription(Bool,     '/battery_level_low',      self.battery_cb,         10)
+        self.create_subscription(Odometry, '/odom',                   self.odom_cb,            10)
+        self.create_subscription(String,   '/detected_colour',        self.detected_colour_cb, 10)
+        self.create_subscription(Bool,     '/colour_visible',         self.colour_visible_cb,  10)
+        self.create_subscription(Float32,  '/colour_offset_x',        self.colour_offset_cb,   10)
+        self.create_subscription(Float32,  '/colour_area',            self.colour_area_cb,     10)
+        self.create_subscription(Float32,  '/front_obstacle_distance',self.front_dist_cb,      10)
+        self.create_subscription(LaserScan,'/scan',                   self.scan_cb,            10)
 
         self.tree = self._build_tree()
-        self.get_logger().info('BTRunner started')
+        self.get_logger().info('BTRunner started — waiting for sensors')
 
     # ─────────────────────────────────────────
     # Callbacks
     # ─────────────────────────────────────────
+
+    def fire_safe_cb(self, msg):
+        self.fire_safe_received = True
+        self.fire_too_close = not msg.data
 
     def battery_cb(self, msg):
         self.battery_low = msg.data
@@ -503,18 +483,17 @@ class BTRunner(Node):
     def front_dist_cb(self, msg):
         self.front_obstacle_distance = msg.data
 
+    def scan_cb(self, msg):
+        self.scan_received = True
+
     def odom_cb(self, msg):
+        self.odom_received = True
         self.robot_x = msg.pose.pose.position.x
         self.robot_y = msg.pose.pose.position.y
         q = msg.pose.pose.orientation
         siny = 2.0 * (q.w * q.z + q.x * q.y)
         cosy = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
         self.robot_yaw = math.atan2(siny, cosy)
-        dist = math.sqrt(
-            (self.robot_x - self.fire_x) ** 2 +
-            (self.robot_y - self.fire_y) ** 2
-        )
-        self.fire_too_close = dist < self.fire_min_dist
 
     # ─────────────────────────────────────────
     # Helpers
@@ -534,11 +513,28 @@ class BTRunner(Node):
 
     def _build_tree(self):
 
+        # ── Wait for all sensor nodes to publish ──
+        wait_for_sensors = py_trees.composites.Selector(
+            name='SensorReadyWrapper', memory=False,
+            children=[
+                TaskAlreadyDone('SensorReadySkip', self, 'sensor_wait_done'),
+                py_trees.composites.Sequence(
+                    name='SensorReadyDo', memory=True,
+                    children=[
+                        WaitForSensors(self),
+                        MarkTaskDone('MarkSensorReady', self, 'sensor_wait_done'),
+                    ]
+                )
+            ]
+        )
+
+        # ── Fire safety fallback ──
         fire_safety_fallback = py_trees.composites.Selector(
             name='FireSafetyFallback', memory=False,
             children=[FireSafe(self), RetreatFromFire(self)]
         )
 
+        # ── Battery fallback ──
         charge_with_timeout = py_trees.decorators.Timeout(
             name='ChargeTimeout', child=WaitForCharge(self), duration=60.0
         )
@@ -550,7 +546,6 @@ class BTRunner(Node):
                 py_trees.composites.Sequence(
                     name='DockingSequence', memory=True,
                     children=[
-                        # Navigate to dock by coordinate, verify by black colour
                         NavigateToVerified(
                             'GoToDock', self,
                             target_name='dock',
@@ -576,50 +571,29 @@ class BTRunner(Node):
                 ]
             )
 
-        # Startup scan
-        startup_scan = py_trees.composites.Selector(
-            name='StartupScanWrapper', memory=False,
-            children=[
-                TaskAlreadyDone('ScanSkip', self, 'scan_done'),
-                py_trees.composites.Sequence(
-                    name='ScanDo', memory=True,
-                    children=[
-                        ScanEnvironment(self),
-                        MarkTaskDone('MarkScanDone', self, 'scan_done'),
-                    ]
-                )
-            ]
-        )
-
         # ── Task 1: Bring Medical Kit to Survivor ──
         task1_inner = py_trees.composites.Sequence(
             name='Task1_MedicalKit', memory=True,
             children=[
                 step('GoToSurvivor', 't1_survivor_reached',
-                     NavigateToVerified(
-                         'GoToSurvivor', self,
-                         target_name='survivor',
-                         expected_colour='green',
-                         stop_distance=1.0
-                     )),
+                     NavigateToVerified('GoToSurvivor', self,
+                                        target_name='survivor',
+                                        expected_colour='green',
+                                        stop_distance=1.0)),
                 step('WaitOneSec', 't1_waited',
                      WaitSeconds('WaitOneSec', seconds=1.0)),
                 step('PublishTF', 't1_tf_published',
                      PublishSurvivorTF(self)),
                 step('GoToMedKit', 't1_medkit_reached',
-                     NavigateToVerified(
-                         'GoToMedKit', self,
-                         target_name='medical_kit',
-                         expected_colour='yellow',
-                         stop_distance=0.5
-                     )),
+                     NavigateToVerified('GoToMedKit', self,
+                                        target_name='medical_kit',
+                                        expected_colour='yellow',
+                                        stop_distance=0.5)),
                 step('ReturnToSurvivor', 't1_returned',
-                     NavigateToVerified(
-                         'ReturnToSurvivor', self,
-                         target_name='survivor',
-                         expected_colour='green',
-                         stop_distance=1.0
-                     )),
+                     NavigateToVerified('ReturnToSurvivor', self,
+                                        target_name='survivor',
+                                        expected_colour='green',
+                                        stop_distance=1.0)),
                 MarkTaskDone('MarkTask1Done', self, 'task1_done'),
             ]
         )
@@ -634,12 +608,10 @@ class BTRunner(Node):
             name='Task2_ScanDam', memory=True,
             children=[
                 step('GoToDam', 't2_dam_reached',
-                     NavigateToVerified(
-                         'GoToDam', self,
-                         target_name='dam',
-                         expected_colour='blue',
-                         stop_distance=0.5
-                     )),
+                     NavigateToVerified('GoToDam', self,
+                                        target_name='dam',
+                                        expected_colour='blue',
+                                        stop_distance=0.5)),
                 step('RotateLeft', 't2_rotated_left',
                      RotateRobot('RotateLeft10', self, degrees=10)),
                 step('RotateRight', 't2_rotated_right',
@@ -658,12 +630,10 @@ class BTRunner(Node):
             name='Task5_Exit', memory=True,
             children=[
                 step('GoToExit', 't5_exit_reached',
-                     NavigateToVerified(
-                         'GoToExit', self,
-                         target_name='exit',
-                         expected_colour='purple',
-                         stop_distance=0.3
-                     )),
+                     NavigateToVerified('GoToExit', self,
+                                        target_name='exit',
+                                        expected_colour='purple',
+                                        stop_distance=0.3)),
                 MarkTaskDone('MarkTask5Done', self, 'task5_done'),
                 StopAndWait(self),
             ]
@@ -674,11 +644,12 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task5Skip', self, 'task5_done'), task5_inner]
         )
 
+        # ── Mission root ──
         root = py_trees.composites.Sequence(
             name='Mission', memory=False,
             children=[
+                wait_for_sensors,
                 fire_safety_fallback,
-                startup_scan,
                 battery_fallback,
                 task1,
                 task2,

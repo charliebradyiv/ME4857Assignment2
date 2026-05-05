@@ -4,10 +4,10 @@
 
 #include <string.h>
 
-#include "rosidl_typesupport_interface/macros.h"
-#include "sr_interfaces/action/detail/navigate_to_waypoint__functions.h"
 #include "sr_interfaces/action/detail/navigate_to_waypoint__type_support.h"
 #include "sr_interfaces/action/detail/navigate_to_waypoint__struct.h"
+#include "rosidl_typesupport_interface/macros.h"
+#include "sr_interfaces/action/detail/navigate_to_waypoint__functions.h"
 
 #ifdef __cplusplus
 extern "C"

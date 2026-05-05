@@ -1,4 +1,0 @@
-Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
-Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
-Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces
-Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces

@@ -4,5 +4,3 @@ sr_interfaces.egg-info/PKG-INFO
 sr_interfaces.egg-info/SOURCES.txt
 sr_interfaces.egg-info/dependency_links.txt
 sr_interfaces.egg-info/top_level.txt
-sr_interfaces/action/__init__.py
-sr_interfaces/action/_navigate_to_waypoint.py
