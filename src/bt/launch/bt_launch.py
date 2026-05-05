@@ -36,12 +36,6 @@ def generate_launch_description():
             output='screen',
         ),
         Node(
-            package='bt',
-            executable='battery_monitor.py',
-            name='battery_monitor',
-            output='screen',
-        ),
-        Node(
              package='bt',
              executable='fire_safety.py',
               name='fire_safety',
