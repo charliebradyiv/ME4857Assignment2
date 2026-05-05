@@ -160,23 +160,27 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
     """
     Drives the robot to a target colour using camera + LiDAR.
 
-    Phases:
-      TURN_TO_BEARING — rotate to the bearing recorded during the startup scan
-      SEARCH          — rotate slowly until target colour is visible
-      DRIVE           — drive forward with steering correction
+    Phase priority (checked in initialise):
+      1. GOTO_POSITION  — if we've visited this colour before, drive straight to its
+                          stored world (x, y) coordinates using odometry. Switches to
+                          camera-guided SEARCH for the final approach.
+      2. TURN_TO_BEARING — if a bearing was recorded during the startup scan, rotate
+                          to face it before searching.
+      3. SEARCH         — rotate slowly until the target colour is visible.
+      4. DRIVE          — drive forward with camera steering. Tolerates brief colour
+                          loss (LOST_THRESHOLD ticks) before reverting to SEARCH.
 
-    Key design: once in DRIVE, the robot keeps moving forward even if the
-    colour temporarily disappears (up to LOST_THRESHOLD ticks). It only
-    falls back to SEARCH if the colour is consistently absent. This prevents
-    oscillation when two objects are near each other.
+    When the robot successfully reaches a colour, its world position is stored in
+    node.colour_positions so future visits use GOTO_POSITION.
     """
 
-    BEARING_THRESHOLD = 0.2   # rad (~11 deg) — close enough to recorded bearing
-    LOST_THRESHOLD    = 8     # consecutive ticks without colour before re-searching
+    BEARING_THRESHOLD  = 0.2   # rad (~11 deg)
+    LOST_THRESHOLD     = 8     # consecutive ticks without colour before re-searching
+    POSITION_HANDOFF   = 1.5   # m — switch from odometry nav to camera at this distance
 
     def __init__(self, name, node, target_colour, stop_distance=1.0, timeout=120.0):
         super().__init__(name)
-        self.node         = node
+        self.node          = node
         self.target_colour = target_colour
         self.stop_distance = stop_distance
         self.timeout       = timeout
@@ -188,10 +192,19 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
         self._start      = time.time()
         self._lost_count = 0
 
-        if self.target_colour in self.node.colour_bearings:
+        if self.target_colour in self.node.colour_positions:
+            # We've been here before — drive directly to stored coordinates
+            self._phase = 'GOTO_POSITION'
+            tx, ty = self.node.colour_positions[self.target_colour]
+            self.node.get_logger().info(
+                f'NavigateToColour [{self.target_colour}]: '
+                f'going to stored position ({tx:.1f}, {ty:.1f})'
+            )
+        elif self.target_colour in self.node.colour_bearings:
             self._phase = 'TURN_TO_BEARING'
             self.node.get_logger().info(
-                f'NavigateToColour [{self.target_colour}]: turning to scan bearing '
+                f'NavigateToColour [{self.target_colour}]: '
+                f'turning to scan bearing '
                 f'{math.degrees(self.node.colour_bearings[self.target_colour]):.1f} deg'
             )
         else:
@@ -216,13 +229,53 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
         # ── Stop condition ──────────────────────────────────────────────────
         if on_target and self.node.front_obstacle_distance <= self.stop_distance:
             self.node.cmd_vel_pub.publish(Twist())
+            # Store world position so return trips use GOTO_POSITION
+            self.node.colour_positions[self.target_colour] = (
+                self.node.robot_x,
+                self.node.robot_y
+            )
             self.node.get_logger().info(
                 f'Reached {self.target_colour}: '
-                f'LiDAR={self.node.front_obstacle_distance:.2f}m'
+                f'LiDAR={self.node.front_obstacle_distance:.2f}m  '
+                f'pos=({self.node.robot_x:.1f}, {self.node.robot_y:.1f}) stored'
             )
             return py_trees.common.Status.SUCCESS
 
         twist = Twist()
+
+        # ── Phase: GOTO_POSITION ────────────────────────────────────────────
+        # Drive toward stored world coordinates using odometry.
+        # Hand off to camera (SEARCH) when close enough.
+        if self._phase == 'GOTO_POSITION':
+            tx, ty = self.node.colour_positions[self.target_colour]
+            dx     = tx - self.node.robot_x
+            dy     = ty - self.node.robot_y
+            dist   = math.sqrt(dx * dx + dy * dy)
+
+            if dist < self.POSITION_HANDOFF:
+                # Close — switch to camera-guided approach
+                self._phase = 'DRIVE' if on_target else 'SEARCH'
+                self.node.get_logger().info(
+                    f'[{self.target_colour}] near stored pos ({dist:.2f}m) '
+                    f'→ {self._phase}'
+                )
+            else:
+                bearing       = math.atan2(dy, dx)
+                heading_error = self.node.angle_diff(bearing, self.node.robot_yaw)
+                speed         = min(0.8, max(0.15, dist * 0.4))
+
+                if abs(heading_error) > 0.3:
+                    twist.linear.x  = 0.0
+                    twist.angular.z = max(-0.6, min(0.6, heading_error * 1.5))
+                else:
+                    twist.linear.x  = speed
+                    twist.angular.z = max(-0.6, min(0.6, heading_error * 1.0))
+
+                self.node.get_logger().info(
+                    f'GOTO_POSITION [{self.target_colour}]: '
+                    f'dist={dist:.2f}m heading_err={math.degrees(heading_error):.1f}deg',
+                    throttle_duration_sec=1.0
+                )
 
         # ── Phase: TURN_TO_BEARING ──────────────────────────────────────────
         if self._phase == 'TURN_TO_BEARING':
@@ -232,8 +285,6 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
             else:
                 heading_error = self.node.angle_diff(bearing, self.node.robot_yaw)
                 if abs(heading_error) < self.BEARING_THRESHOLD:
-                    # Arrived at bearing — go straight to DRIVE if colour visible,
-                    # otherwise SEARCH
                     self._phase = 'DRIVE' if on_target else 'SEARCH'
                     self.node.get_logger().info(
                         f'[{self.target_colour}] bearing reached → {self._phase}'
@@ -265,13 +316,10 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
         # ── Phase: DRIVE ────────────────────────────────────────────────────
         if self._phase == 'DRIVE':
             if on_target:
-                # Colour visible — drive forward and steer toward it
                 self._lost_count = 0
                 dist  = self.node.front_obstacle_distance
-                # Scale speed: fast when far, slow as we approach
                 speed = min(0.8, max(0.15, (dist - self.stop_distance) * 0.8))
                 twist.linear.x  = speed
-                # Stronger steering correction to track the colour
                 twist.angular.z = -0.8 * self.node.colour_offset_x
                 self.node.get_logger().info(
                     f'Driving to {self.target_colour}: '
@@ -280,19 +328,15 @@ class NavigateToColour(py_trees.behaviour.Behaviour):
                     throttle_duration_sec=1.0
                 )
             else:
-                # Colour temporarily lost — keep moving slowly and rotating to recover
                 self._lost_count += 1
                 if self._lost_count > self.LOST_THRESHOLD:
-                    # Lost for too long — full search rotation
                     self._phase      = 'SEARCH'
                     self._lost_count = 0
                     twist.angular.z  = 0.3
                     self.node.get_logger().info(
-                        f'[{self.target_colour}] lost for {self.LOST_THRESHOLD} '
-                        f'ticks — returning to SEARCH'
+                        f'[{self.target_colour}] lost — returning to SEARCH'
                     )
                 else:
-                    # Briefly lost — creep forward and rotate slightly to recover
                     twist.linear.x  = 0.1
                     twist.angular.z = 0.2
                     self.node.get_logger().info(
@@ -496,8 +540,12 @@ class BTRunner(Node):
         # LiDAR state
         self.front_obstacle_distance = float('inf')
 
-        # Bearings from startup scan
+        # Bearings recorded during startup 360 scan {colour: bearing_rad}
         self.colour_bearings = {}
+
+        # World positions recorded on first successful visit {colour: (x, y)}
+        # Used for accurate return trips without needing to search
+        self.colour_positions = {}
 
         # Task flags
         self.scan_done  = False
@@ -623,7 +671,7 @@ class BTRunner(Node):
                 ]
             )
 
-        # Startup scan
+        # Startup scan — runs once, resumes after interruptions
         startup_scan = py_trees.composites.Selector(
             name='StartupScanWrapper', memory=False,
             children=[
@@ -700,8 +748,8 @@ class BTRunner(Node):
             name='Mission', memory=False,
             children=[
                 fire_safety_fallback,
+                startup_scan,        # scan runs before battery check to avoid interference
                 battery_fallback,
-                startup_scan,
                 task1,
                 task2,
                 task5,
