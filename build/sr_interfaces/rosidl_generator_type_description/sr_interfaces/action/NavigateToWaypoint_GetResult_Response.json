@@ -1,0 +1,66 @@
+{
+  "type_description_msg": {
+    "type_description": {
+      "type_name": "sr_interfaces/action/NavigateToWaypoint_GetResult_Response",
+      "fields": [
+        {
+          "name": "status",
+          "type": {
+            "type_id": 2,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        },
+        {
+          "name": "result",
+          "type": {
+            "type_id": 1,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": "sr_interfaces/action/NavigateToWaypoint_Result"
+          },
+          "default_value": ""
+        }
+      ]
+    },
+    "referenced_type_descriptions": [
+      {
+        "type_name": "sr_interfaces/action/NavigateToWaypoint_Result",
+        "fields": [
+          {
+            "name": "success",
+            "type": {
+              "type_id": 15,
+              "capacity": 0,
+              "string_capacity": 0,
+              "nested_type_name": ""
+            },
+            "default_value": ""
+          },
+          {
+            "name": "message",
+            "type": {
+              "type_id": 17,
+              "capacity": 0,
+              "string_capacity": 0,
+              "nested_type_name": ""
+            },
+            "default_value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "type_hashes": [
+    {
+      "type_name": "sr_interfaces/action/NavigateToWaypoint_GetResult_Response",
+      "hash_string": "RIHS01_df00a598810834e58f907cccc58ccb5e3a6a0662833bb32bcc10b02dba7d965e"
+    },
+    {
+      "type_name": "sr_interfaces/action/NavigateToWaypoint_Result",
+      "hash_string": "RIHS01_ff6b31e745e92787efc2faa9079fa07c3c2cb355fe1047174541381cea01e1e8"
+    }
+  ]
+}

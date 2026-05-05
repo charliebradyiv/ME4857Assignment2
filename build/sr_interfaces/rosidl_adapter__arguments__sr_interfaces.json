@@ -1,0 +1,6 @@
+{
+  "package_name": "sr_interfaces",
+  "non_idl_tuples": [
+    "/home/fintan/ME4857Assignment2-master/src/sr_interfaces:action/NavigateToWaypoint.action"
+  ]
+}

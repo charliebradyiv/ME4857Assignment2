@@ -1,0 +1,244 @@
+[0.089s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/sr_interfaces -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/sr_interfaces
+[0.649s] -- The C compiler identification is GNU 13.3.0
+[2.156s] -- The CXX compiler identification is GNU 13.3.0
+[3.373s] -- Detecting C compiler ABI info
+[4.031s] -- Detecting C compiler ABI info - done
+[4.053s] -- Check for working C compiler: /usr/bin/cc - skipped
+[4.053s] -- Detecting C compile features
+[4.054s] -- Detecting C compile features - done
+[4.280s] -- Detecting CXX compiler ABI info
+[4.913s] -- Detecting CXX compiler ABI info - done
+[4.927s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[4.927s] -- Detecting CXX compile features
+[4.928s] -- Detecting CXX compile features - done
+[4.936s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[5.257s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[5.522s] -- Found rosidl_default_generators: 1.6.0 (/opt/ros/jazzy/share/rosidl_default_generators/cmake)
+[5.538s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[6.006s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[6.158s] -- Found rosidl_adapter: 4.6.7 (/opt/ros/jazzy/share/rosidl_adapter/cmake)
+[6.168s] -- Found geometry_msgs: 5.3.7 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+[7.546s] -- Found ament_cmake_ros: 0.12.0 (/opt/ros/jazzy/share/ament_cmake_ros/cmake)
+[8.498s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[9.974s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[9.982s] -- Found python_cmake_module: 0.11.1 (/opt/ros/jazzy/share/python_cmake_module/cmake)
+[10.190s] -- Found PythonExtra: /usr/bin/python3  
+[10.960s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter Development NumPy Development.Module Development.Embed 
+[11.162s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[11.179s] -- Configuring done (11.0s)
+[11.324s] -- Generating done (0.1s)
+[11.357s] -- Build files have been written to: /home/fintan/ME4857Assignment2-master/build/sr_interfaces
+[11.386s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/sr_interfaces -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/sr_interfaces
+[11.389s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
+[11.499s] [  2%] [34m[1mGenerating Rust code for ROS interfaces[0m
+[12.145s] [  2%] Built target sr_interfaces__rs
+[12.212s] [  2%] Built target ament_cmake_python_copy_sr_interfaces
+[12.257s] [  5%] [34m[1mGenerating type hashes for ROS interfaces[0m
+[12.767s] [  5%] Built target sr_interfaces__rosidl_generator_type_description
+[13.332s] running egg_info
+[13.333s] creating sr_interfaces.egg-info
+[13.371s] writing sr_interfaces.egg-info/PKG-INFO
+[13.372s] writing dependency_links to sr_interfaces.egg-info/dependency_links.txt
+[13.372s] writing top-level names to sr_interfaces.egg-info/top_level.txt
+[13.372s] writing manifest file 'sr_interfaces.egg-info/SOURCES.txt'
+[13.482s] reading manifest file 'sr_interfaces.egg-info/SOURCES.txt'
+[13.483s] writing manifest file 'sr_interfaces.egg-info/SOURCES.txt'
+[13.572s] [  5%] Built target ament_cmake_python_build_sr_interfaces_egg
+[13.649s] [  8%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[14.894s] [  8%] Built target sr_interfaces__cpp
+[14.924s] [ 11%] [34m[1mGenerating C code for ROS interfaces[0m
+[15.877s] [ 14%] [32mBuilding C object CMakeFiles/sr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/sr_interfaces/action/detail/navigate_to_waypoint__description.c.o[0m
+[16.063s] [ 17%] [32mBuilding C object CMakeFiles/sr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/sr_interfaces/action/detail/navigate_to_waypoint__type_support.c.o[0m
+[16.161s] [ 20%] [32mBuilding C object CMakeFiles/sr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/sr_interfaces/action/detail/navigate_to_waypoint__functions.c.o[0m
+[16.461s] [ 22%] [32m[1mLinking C shared library libsr_interfaces__rosidl_generator_c.so[0m
+[16.788s] [ 22%] Built target sr_interfaces__rosidl_generator_c
+[16.809s] [ 25%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[17.687s] [ 28%] [32mBuilding CXX object CMakeFiles/sr_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sr_interfaces/action/detail/navigate_to_waypoint__type_support_c.cpp.o[0m
+[18.849s] [ 31%] [32m[1mLinking CXX shared library libsr_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[19.191s] [ 31%] Built target sr_interfaces__rosidl_typesupport_fastrtps_c
+[19.214s] [ 34%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[19.696s] [ 37%] [32mBuilding CXX object CMakeFiles/sr_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sr_interfaces/action/navigate_to_waypoint__type_support.cpp.o[0m
+[20.977s] [ 40%] [32m[1mLinking CXX shared library libsr_interfaces__rosidl_typesupport_cpp.so[0m
+[21.469s] [ 40%] Built target sr_interfaces__rosidl_typesupport_cpp
+[21.493s] [ 42%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[21.978s] [ 45%] [32mBuilding CXX object CMakeFiles/sr_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sr_interfaces/action/detail/navigate_to_waypoint__type_support.cpp.o[0m
+[23.159s] [ 48%] [32m[1mLinking CXX shared library libsr_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[23.648s] [ 48%] Built target sr_interfaces__rosidl_typesupport_introspection_cpp
+[23.673s] [ 51%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[24.401s] [ 54%] [32mBuilding CXX object CMakeFiles/sr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sr_interfaces/action/detail/dds_fastrtps/navigate_to_waypoint__type_support.cpp.o[0m
+[25.892s] [ 57%] [32m[1mLinking CXX shared library libsr_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[26.314s] [ 57%] Built target sr_interfaces__rosidl_typesupport_fastrtps_cpp
+[26.334s] [ 60%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[26.732s] [ 62%] [32mBuilding CXX object CMakeFiles/sr_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/sr_interfaces/action/navigate_to_waypoint__type_support.cpp.o[0m
+[26.837s] [ 65%] [32m[1mLinking CXX shared library libsr_interfaces__rosidl_typesupport_c.so[0m
+[27.148s] [ 65%] Built target sr_interfaces__rosidl_typesupport_c
+[27.165s] [ 68%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[27.659s] [ 71%] [32mBuilding C object CMakeFiles/sr_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sr_interfaces/action/detail/navigate_to_waypoint__type_support.c.o[0m
+[27.769s] [ 74%] [32m[1mLinking C shared library libsr_interfaces__rosidl_typesupport_introspection_c.so[0m
+[28.001s] [ 74%] Built target sr_interfaces__rosidl_typesupport_introspection_c
+[28.036s] [ 74%] Built target sr_interfaces
+[28.072s] [ 77%] [34m[1mGenerating Python code for ROS interfaces[0m
+[29.141s] [ 77%] Built target sr_interfaces__py
+[29.196s] [ 80%] [32mBuilding C object CMakeFiles/sr_interfaces__rosidl_generator_py.dir/rosidl_generator_py/sr_interfaces/action/_navigate_to_waypoint_s.c.o[0m
+[29.595s] [ 82%] [32m[1mLinking C shared library libsr_interfaces__rosidl_generator_py.so[0m
+[29.974s] [ 82%] Built target sr_interfaces__rosidl_generator_py
+[30.024s] [ 85%] [32mBuilding C object CMakeFiles/sr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[30.313s] [ 88%] [32m[1mLinking C shared module rosidl_generator_py/sr_interfaces/sr_interfaces_s__rosidl_typesupport_fastrtps_c.so[0m
+[30.630s] [ 88%] Built target sr_interfaces_s__rosidl_typesupport_fastrtps_c
+[30.676s] [ 91%] [32mBuilding C object CMakeFiles/sr_interfaces_s__rosidl_typesupport_c.dir/rosidl_generator_py/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[30.931s] [ 94%] [32m[1mLinking C shared module rosidl_generator_py/sr_interfaces/sr_interfaces_s__rosidl_typesupport_c.so[0m
+[31.223s] [ 94%] Built target sr_interfaces_s__rosidl_typesupport_c
+[31.267s] [ 97%] [32mBuilding C object CMakeFiles/sr_interfaces_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[31.595s] [100%] [32m[1mLinking C shared module rosidl_generator_py/sr_interfaces/sr_interfaces_s__rosidl_typesupport_introspection_c.so[0m
+[32.276s] [100%] Built target sr_interfaces_s__rosidl_typesupport_introspection_c
+[32.313s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
+[32.317s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces
+[32.345s] -- Install configuration: ""
+[32.348s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/ament_index/resource_index/rosidl_interfaces/sr_interfaces
+[32.350s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/action/NavigateToWaypoint.json
+[32.350s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.353s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg
+[32.354s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg/rosidl_generator_c__visibility_control.h
+[32.355s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.357s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.359s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__type_support.c
+[32.360s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__type_support.h
+[32.361s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__description.c
+[32.362s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__functions.h
+[32.362s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__functions.c
+[32.363s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__struct.h
+[32.363s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/navigate_to_waypoint.h
+[32.364s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/library_path.sh
+[32.365s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/library_path.dsv
+[32.366s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_generator_c.so
+[32.368s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_generator_c.so" to ""
+[32.369s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.369s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg
+[32.370s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[32.370s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.371s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.371s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__rosidl_typesupport_fastrtps_c.h
+[32.372s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_fastrtps_c.so
+[32.374s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[32.375s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.375s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg
+[32.376s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[32.376s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.377s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.377s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__type_support.c
+[32.378s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__rosidl_typesupport_introspection_c.h
+[32.378s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_introspection_c.so
+[32.379s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[32.380s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_c.so
+[32.381s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_c.so" to ""
+[32.381s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.382s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg
+[32.382s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[32.382s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.383s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.383s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__traits.hpp
+[32.383s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__type_support.hpp
+[32.384s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__builder.hpp
+[32.385s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__struct.hpp
+[32.386s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/navigate_to_waypoint.hpp
+[32.386s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.388s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg
+[32.391s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[32.392s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.393s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.393s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/dds_fastrtps
+[32.394s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__rosidl_typesupport_fastrtps_cpp.hpp
+[32.394s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[32.396s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[32.397s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces
+[32.397s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action
+[32.398s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail
+[32.398s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__rosidl_typesupport_introspection_cpp.hpp
+[32.399s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/include/sr_interfaces/sr_interfaces/action/detail/navigate_to_waypoint__type_support.cpp
+[32.399s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_introspection_cpp.so
+[32.400s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[32.401s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_cpp.so
+[32.403s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_typesupport_cpp.so" to ""
+[32.405s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/pythonpath.sh
+[32.406s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/pythonpath.dsv
+[32.406s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces-1.0.0-py3.12.egg-info
+[32.408s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces-1.0.0-py3.12.egg-info/SOURCES.txt
+[32.409s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces-1.0.0-py3.12.egg-info/dependency_links.txt
+[32.410s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces-1.0.0-py3.12.egg-info/PKG-INFO
+[32.410s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces-1.0.0-py3.12.egg-info/top_level.txt
+[32.411s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces
+[32.413s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_c.so
+[32.413s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/__init__.py
+[32.414s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_introspection_c.c
+[32.414s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_fastrtps_c.so
+[32.414s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_c.c
+[32.415s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action
+[32.416s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action/__init__.py
+[32.417s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action/_navigate_to_waypoint_s.c
+[32.418s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action/_navigate_to_waypoint.py
+[32.419s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/_sr_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+[32.420s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_introspection_c.so
+[32.568s] Listing '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces'...
+[32.568s] Compiling '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/__init__.py'...
+[32.568s] Listing '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action'...
+[32.568s] Compiling '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action/__init__.py'...
+[32.569s] Compiling '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/action/_navigate_to_waypoint.py'...
+[32.582s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_fastrtps_c.so
+[32.583s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_fastrtps_c.so" to ""
+[32.584s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_introspection_c.so
+[32.585s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_introspection_c.so" to ""
+[32.585s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_c.so
+[32.586s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages/sr_interfaces/sr_interfaces_s__rosidl_typesupport_c.so" to ""
+[32.587s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_generator_py.so
+[32.588s] -- Set non-toolchain portion of runtime path of "/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/libsr_interfaces__rosidl_generator_py.so" to ""
+[32.589s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/ament_index/resource_index/rust_packages/sr_interfaces
+[32.590s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust
+[32.591s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/src
+[32.592s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/src/action
+[32.593s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/src/action/rmw.rs
+[32.594s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/src/lib.rs
+[32.595s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/src/action.rs
+[32.596s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/Cargo.toml
+[32.598s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/rust/build.rs
+[32.599s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/action/NavigateToWaypoint.idl
+[32.600s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/action/NavigateToWaypoint.action
+[32.603s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/ament_index/resource_index/package_run_dependencies/sr_interfaces
+[32.604s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/ament_index/resource_index/parent_prefix_path/sr_interfaces
+[32.605s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/ament_prefix_path.sh
+[32.606s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/ament_prefix_path.dsv
+[32.606s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/path.sh
+[32.607s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/environment/path.dsv
+[32.607s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/local_setup.bash
+[32.608s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/local_setup.sh
+[32.608s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/local_setup.zsh
+[32.609s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/local_setup.dsv
+[32.609s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.dsv
+[32.611s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/ament_index/resource_index/packages/sr_interfaces
+[32.616s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_generator_cExport.cmake
+[32.618s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_generator_cExport-noconfig.cmake
+[32.618s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_typesupport_fastrtps_cExport.cmake
+[32.619s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[32.620s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[32.621s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[32.622s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_cExport.cmake
+[32.622s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[32.623s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_generator_cppExport.cmake
+[32.624s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake
+[32.624s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[32.625s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[32.625s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[32.626s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_cppExport.cmake
+[32.626s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[32.627s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_generator_pyExport.cmake
+[32.628s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/export_sr_interfaces__rosidl_generator_pyExport-noconfig.cmake
+[32.628s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/rosidl_cmake-extras.cmake
+[32.629s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[32.630s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[32.630s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[32.631s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[32.634s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[32.637s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[32.638s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfacesConfig.cmake
+[32.639s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/cmake/sr_interfacesConfig-version.cmake
+[32.639s] -- Installing: /home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.xml
+[32.648s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces

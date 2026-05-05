@@ -1,0 +1,9 @@
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/uninstall.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/start_up_uninstall.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/test.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/edit_cache.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/rebuild_cache.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/list_install_components.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/install.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/install/local.dir
+/home/fintan/ME4857Assignment2-master/build/start_up/CMakeFiles/install/strip.dir

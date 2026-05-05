@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from sr_interfaces/action/NavigateToWaypoint.action
+// generated code does not contain a copyright notice
+
+
+module sr_interfaces {
+  module action {
+    @verbatim (language="comment", text=
+      "Goal — where to go and how close to get")
+    struct NavigateToWaypoint_Goal {
+      string target_name;
+
+      double stop_distance;
+    };
+    @verbatim (language="comment", text=
+      "Result — did we get there")
+    struct NavigateToWaypoint_Result {
+      boolean success;
+
+      string message;
+    };
+    @verbatim (language="comment", text=
+      "Feedback — distance remaining while navigating")
+    struct NavigateToWaypoint_Feedback {
+      double distance_remaining;
+    };
+  };
+};

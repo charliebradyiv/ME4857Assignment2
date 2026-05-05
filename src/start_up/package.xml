@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>start_up</name>
+  <version>1.0.0</version>
+  <description>Startup launch package for search and rescue robot</description>
+  <maintainer email="TODO@email.com">TODO</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>robot_model</depend>
+  <depend>bt</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

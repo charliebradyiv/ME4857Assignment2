@@ -1,0 +1,10 @@
+# Goal — where to go and how close to get
+string target_name
+float64 stop_distance
+---
+# Result — did we get there
+bool success
+string message
+---
+# Feedback — distance remaining while navigating
+float64 distance_remaining

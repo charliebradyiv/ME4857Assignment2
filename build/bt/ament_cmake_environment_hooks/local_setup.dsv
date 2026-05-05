@@ -1,0 +1,3 @@
+source;share/bt/environment/ament_prefix_path.sh
+source;share/bt/environment/path.sh
+source;share/bt/environment/pythonpath.sh

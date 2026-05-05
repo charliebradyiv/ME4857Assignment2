@@ -1,0 +1,59 @@
+[0.725s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/bt': AMENT_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy LD_LIBRARY_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/bt -- -j12 -l12
+[1.075s] Built target ament_cmake_python_copy_bt_nodes
+[2.129s] running egg_info
+[2.280s] writing bt_nodes.egg-info/PKG-INFO
+[2.281s] writing dependency_links to bt_nodes.egg-info/dependency_links.txt
+[2.282s] writing top-level names to bt_nodes.egg-info/top_level.txt
+[2.559s] reading manifest file 'bt_nodes.egg-info/SOURCES.txt'
+[2.561s] writing manifest file 'bt_nodes.egg-info/SOURCES.txt'
+[2.687s] Built target ament_cmake_python_build_bt_nodes_egg
+[2.731s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/bt' returned '0': AMENT_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy LD_LIBRARY_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/bt -- -j12 -l12
+[2.735s] Invoking command in '/home/fintan/ME4857Assignment2-master/build/bt': AMENT_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy LD_LIBRARY_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/bt
+[2.767s] -- Install configuration: ""
+[2.769s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.sh
+[2.769s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/pythonpath.dsv
+[2.770s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info
+[2.772s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/SOURCES.txt
+[2.772s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/dependency_links.txt
+[2.773s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/PKG-INFO
+[2.773s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes-1.0.0-py3.12.egg-info/top_level.txt
+[2.773s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes
+[2.773s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/__init__.py
+[2.774s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/cmd_vel_converter.py
+[2.774s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/fire_safety.py
+[2.775s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/tf_publisher.py
+[2.775s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/bt_runner.py
+[2.776s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/battery_monitor.py
+[2.777s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/camera_colour_detector.py
+[2.778s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/navigate_to_server.py
+[2.778s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/obstacle_monitor.py
+[2.933s] Listing '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes'...
+[2.933s] Compiling '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages/bt_nodes/bt_runner.py'...
+[2.976s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/bt_xml
+[2.978s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/bt_xml/bt.xml
+[2.982s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/launch
+[2.983s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/launch/bt_launch.py
+[2.983s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/bt_runner.py
+[2.983s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/battery_monitor.py
+[2.984s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/fire_safety.py
+[2.985s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/tf_publisher.py
+[2.985s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/navigate_to_server.py
+[2.987s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/obstacle_monitor.py
+[2.988s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/cmd_vel_converter.py
+[2.989s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/lib/bt/camera_colour_detector.py
+[2.989s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/package_run_dependencies/bt
+[2.990s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/parent_prefix_path/bt
+[2.990s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.sh
+[2.990s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/ament_prefix_path.dsv
+[2.990s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.sh
+[2.995s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/environment/path.dsv
+[2.996s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.bash
+[2.996s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.sh
+[2.997s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.zsh
+[2.997s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/local_setup.dsv
+[2.997s] -- Installing: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.dsv
+[2.998s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/ament_index/resource_index/packages/bt
+[2.998s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig.cmake
+[2.999s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/cmake/btConfig-version.cmake
+[2.999s] -- Up-to-date: /home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.xml
+[3.002s] Invoked command in '/home/fintan/ME4857Assignment2-master/build/bt' returned '0': AMENT_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy LD_LIBRARY_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/bt

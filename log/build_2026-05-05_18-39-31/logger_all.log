@@ -1,0 +1,465 @@
+[0.452s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.453s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x76342b15b890>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x76342b2a4500>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x76342b2a4500>>)
+[0.553s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.554s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/fintan/ME4857Assignment2-master'
+[0.555s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.555s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.555s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.555s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.556s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.556s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.556s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.556s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.556s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extensions ['ignore', 'ignore_ament_install']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extension 'ignore'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extension 'ignore_ament_install'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extensions ['colcon_pkg']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extension 'colcon_pkg'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extensions ['colcon_meta']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extension 'colcon_meta'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extensions ['ros']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(src/bt) by extension 'ros'
+[0.627s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bt' with type 'ros.ament_cmake' and name 'bt'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extensions ['ignore', 'ignore_ament_install']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extension 'ignore'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extension 'ignore_ament_install'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extensions ['colcon_pkg']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extension 'colcon_pkg'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extensions ['colcon_meta']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extension 'colcon_meta'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extensions ['ros']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(src/gazebo) by extension 'ros'
+[0.629s] DEBUG:colcon.colcon_core.package_identification:Package 'src/gazebo' with type 'ros.ament_cmake' and name 'gazebo_worlds'
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['ignore', 'ignore_ament_install']
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'ignore'
+[0.630s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'ignore_ament_install'
+[0.630s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['colcon_pkg']
+[0.630s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'colcon_pkg'
+[0.630s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['colcon_meta']
+[0.630s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'colcon_meta'
+[0.631s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['ros']
+[0.631s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'ros'
+[0.631s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['cmake', 'python']
+[0.631s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'cmake'
+[0.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'python'
+[0.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extensions ['python_setup_py']
+[0.632s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation) by extension 'python_setup_py'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['ignore', 'ignore_ament_install']
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'ignore'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'ignore_ament_install'
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['colcon_pkg']
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'colcon_pkg'
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['colcon_meta']
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'colcon_meta'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['ros']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'ros'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['cmake', 'python']
+[0.636s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'cmake'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'python'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extensions ['python_setup_py']
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(src/navigation/maps) by extension 'python_setup_py'
+[0.638s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extensions ['ignore', 'ignore_ament_install']
+[0.638s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extension 'ignore'
+[0.638s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extension 'ignore_ament_install'
+[0.638s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extensions ['colcon_pkg']
+[0.639s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extension 'colcon_pkg'
+[0.639s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extensions ['colcon_meta']
+[0.639s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extension 'colcon_meta'
+[0.639s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extensions ['ros']
+[0.639s] Level 1:colcon.colcon_core.package_identification:_identify(src/robot_model) by extension 'ros'
+[0.646s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robot_model' with type 'ros.ament_cmake' and name 'robot_model'
+[0.646s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.647s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extension 'ignore'
+[0.648s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extension 'ignore_ament_install'
+[0.648s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extensions ['colcon_pkg']
+[0.648s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extension 'colcon_pkg'
+[0.648s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extensions ['colcon_meta']
+[0.648s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extension 'colcon_meta'
+[0.649s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extensions ['ros']
+[0.649s] Level 1:colcon.colcon_core.package_identification:_identify(src/sr_interfaces) by extension 'ros'
+[0.650s] DEBUG:colcon.colcon_core.package_identification:Package 'src/sr_interfaces' with type 'ros.ament_cmake' and name 'sr_interfaces'
+[0.650s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extensions ['ignore', 'ignore_ament_install']
+[0.650s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extension 'ignore'
+[0.650s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extension 'ignore_ament_install'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extensions ['colcon_pkg']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extension 'colcon_pkg'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extensions ['colcon_meta']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extension 'colcon_meta'
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extensions ['ros']
+[0.651s] Level 1:colcon.colcon_core.package_identification:_identify(src/start_up) by extension 'ros'
+[0.653s] DEBUG:colcon.colcon_core.package_identification:Package 'src/start_up' with type 'ros.ament_cmake' and name 'start_up'
+[0.653s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.653s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.653s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.653s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.653s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.709s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.710s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.714s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/fintan/ME4857Assignment2-master/install/start_up' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.715s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/fintan/ME4857Assignment2-master/install/bt' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.715s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.715s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/fintan/ME4857Assignment2-master/install/robot_model' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.716s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.716s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/fintan/ME4857Assignment2-master/install/start_up' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.716s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/fintan/ME4857Assignment2-master/install/bt' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.716s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.717s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/fintan/ME4857Assignment2-master/install/robot_model' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.717s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.721s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/fintan/ME4857Assignment2-master/install
+[0.729s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 374 installed packages in /opt/ros/jazzy
+[0.732s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.938s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_args' from command line to 'None'
+[0.938s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_target' from command line to 'None'
+[0.938s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.938s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_clean_cache' from command line to 'False'
+[0.938s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_clean_first' from command line to 'False'
+[0.939s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'cmake_force_configure' from command line to 'False'
+[0.939s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'ament_cmake_args' from command line to 'None'
+[0.939s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'catkin_cmake_args' from command line to 'None'
+[0.939s] Level 5:colcon.colcon_core.verb:set package 'gazebo_worlds' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.939s] DEBUG:colcon.colcon_core.verb:Building package 'gazebo_worlds' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds', 'merge_install': False, 'path': '/home/fintan/ME4857Assignment2-master/src/gazebo', 'symlink_install': False, 'test_result_base': None}
+[0.940s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_args' from command line to 'None'
+[0.940s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_target' from command line to 'None'
+[0.940s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_clean_cache' from command line to 'False'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_clean_first' from command line to 'False'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'cmake_force_configure' from command line to 'False'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'ament_cmake_args' from command line to 'None'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'catkin_cmake_args' from command line to 'None'
+[0.941s] Level 5:colcon.colcon_core.verb:set package 'robot_model' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.941s] DEBUG:colcon.colcon_core.verb:Building package 'robot_model' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/fintan/ME4857Assignment2-master/build/robot_model', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/fintan/ME4857Assignment2-master/install/robot_model', 'merge_install': False, 'path': '/home/fintan/ME4857Assignment2-master/src/robot_model', 'symlink_install': False, 'test_result_base': None}
+[0.942s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.942s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.943s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.943s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.943s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.944s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.944s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.944s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.944s] Level 5:colcon.colcon_core.verb:set package 'sr_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.944s] DEBUG:colcon.colcon_core.verb:Building package 'sr_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/fintan/ME4857Assignment2-master/build/sr_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/fintan/ME4857Assignment2-master/install/sr_interfaces', 'merge_install': False, 'path': '/home/fintan/ME4857Assignment2-master/src/sr_interfaces', 'symlink_install': False, 'test_result_base': None}
+[0.945s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_args' from command line to 'None'
+[0.945s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_target' from command line to 'None'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_clean_cache' from command line to 'False'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_clean_first' from command line to 'False'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'cmake_force_configure' from command line to 'False'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'ament_cmake_args' from command line to 'None'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'catkin_cmake_args' from command line to 'None'
+[0.946s] Level 5:colcon.colcon_core.verb:set package 'bt' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.946s] DEBUG:colcon.colcon_core.verb:Building package 'bt' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/fintan/ME4857Assignment2-master/build/bt', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/fintan/ME4857Assignment2-master/install/bt', 'merge_install': False, 'path': '/home/fintan/ME4857Assignment2-master/src/bt', 'symlink_install': False, 'test_result_base': None}
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_args' from command line to 'None'
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_target' from command line to 'None'
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_clean_cache' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_clean_first' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'cmake_force_configure' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'ament_cmake_args' from command line to 'None'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'catkin_cmake_args' from command line to 'None'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'start_up' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.949s] DEBUG:colcon.colcon_core.verb:Building package 'start_up' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/fintan/ME4857Assignment2-master/build/start_up', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/fintan/ME4857Assignment2-master/install/start_up', 'merge_install': False, 'path': '/home/fintan/ME4857Assignment2-master/src/start_up', 'symlink_install': False, 'test_result_base': None}
+[0.949s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.956s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.957s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/fintan/ME4857Assignment2-master/src/sr_interfaces' with build type 'ament_cmake'
+[0.958s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/fintan/ME4857Assignment2-master/src/sr_interfaces'
+[0.963s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.964s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.965s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.986s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/fintan/ME4857Assignment2-master/src/robot_model' with build type 'ament_cmake'
+[0.987s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/fintan/ME4857Assignment2-master/src/robot_model'
+[0.988s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.989s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.007s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/fintan/ME4857Assignment2-master/src/gazebo' with build type 'ament_cmake'
+[1.008s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/fintan/ME4857Assignment2-master/src/gazebo'
+[1.011s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.012s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.047s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/sr_interfaces -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/sr_interfaces
+[1.073s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/robot_model
+[1.104s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/gazebo -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/gazebo_worlds
+[6.628s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/gazebo -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/gazebo_worlds
+[6.630s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/gazebo_worlds -- -j12 -l12
+[6.724s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/gazebo_worlds -- -j12 -l12
+[6.756s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/gazebo_worlds
+[6.820s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(gazebo_worlds)
+[6.824s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/gazebo_worlds' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/gazebo_worlds
+[6.829s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' for CMake module files
+[6.830s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' for CMake config files
+[6.831s] Level 1:colcon.colcon_core.shell:create_environment_hook('gazebo_worlds', 'cmake_prefix_path')
+[6.831s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.ps1'
+[6.833s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.dsv'
+[6.834s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.sh'
+[6.835s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/bin'
+[6.836s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/lib/pkgconfig/gazebo_worlds.pc'
+[6.836s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/lib/python3.12/site-packages'
+[6.837s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/bin'
+[6.838s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.ps1'
+[6.840s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.dsv'
+[6.841s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.sh'
+[6.843s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.bash'
+[6.844s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.zsh'
+[6.846s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/colcon-core/packages/gazebo_worlds)
+[6.850s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(gazebo_worlds)
+[6.850s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' for CMake module files
+[6.851s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds' for CMake config files
+[6.851s] Level 1:colcon.colcon_core.shell:create_environment_hook('gazebo_worlds', 'cmake_prefix_path')
+[6.852s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.ps1'
+[6.852s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.dsv'
+[6.853s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/hook/cmake_prefix_path.sh'
+[6.855s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/bin'
+[6.856s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/lib/pkgconfig/gazebo_worlds.pc'
+[6.856s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/lib/python3.12/site-packages'
+[6.857s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/bin'
+[6.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.ps1'
+[6.859s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.dsv'
+[6.860s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.sh'
+[6.862s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.bash'
+[6.863s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/gazebo_worlds/package.zsh'
+[6.864s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/gazebo_worlds/share/colcon-core/packages/gazebo_worlds)
+[6.875s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/robot_model -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/robot_model
+[6.876s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/robot_model -- -j12 -l12
+[6.965s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/robot_model -- -j12 -l12
+[6.966s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/robot_model
+[7.000s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robot_model)
+[7.000s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model' for CMake module files
+[7.001s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/robot_model
+[7.003s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model' for CMake config files
+[7.004s] Level 1:colcon.colcon_core.shell:create_environment_hook('robot_model', 'cmake_prefix_path')
+[7.004s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.ps1'
+[7.008s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.dsv'
+[7.009s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.sh'
+[7.010s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/bin'
+[7.010s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/lib/pkgconfig/robot_model.pc'
+[7.011s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/lib/python3.12/site-packages'
+[7.011s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/bin'
+[7.012s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.ps1'
+[7.013s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.dsv'
+[7.013s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.sh'
+[7.014s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.bash'
+[7.014s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.zsh'
+[7.015s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/robot_model/share/colcon-core/packages/robot_model)
+[7.016s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robot_model)
+[7.017s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model' for CMake module files
+[7.018s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model' for CMake config files
+[7.018s] Level 1:colcon.colcon_core.shell:create_environment_hook('robot_model', 'cmake_prefix_path')
+[7.019s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.ps1'
+[7.020s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.dsv'
+[7.021s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/hook/cmake_prefix_path.sh'
+[7.022s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/bin'
+[7.023s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/lib/pkgconfig/robot_model.pc'
+[7.023s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/lib/python3.12/site-packages'
+[7.024s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/robot_model/bin'
+[7.026s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.ps1'
+[7.027s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.dsv'
+[7.029s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.sh'
+[7.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.bash'
+[7.033s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/robot_model/share/robot_model/package.zsh'
+[7.034s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/robot_model/share/colcon-core/packages/robot_model)
+[12.344s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/sr_interfaces -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/sr_interfaces
+[12.346s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
+[33.271s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/sr_interfaces -- -j12 -l12
+[33.275s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces
+[33.603s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sr_interfaces)
+[33.604s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' for CMake module files
+[33.606s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/sr_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/sr_interfaces
+[33.609s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' for CMake config files
+[33.610s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'cmake_prefix_path')
+[33.611s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.ps1'
+[33.614s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.dsv'
+[33.615s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.sh'
+[33.616s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib'
+[33.616s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'ld_library_path_lib')
+[33.616s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.ps1'
+[33.617s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.dsv'
+[33.619s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.sh'
+[33.621s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/bin'
+[33.621s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/pkgconfig/sr_interfaces.pc'
+[33.622s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages'
+[33.622s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'pythonpath')
+[33.623s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.ps1'
+[33.625s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.dsv'
+[33.628s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.sh'
+[33.630s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/bin'
+[33.631s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.ps1'
+[33.633s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.dsv'
+[33.635s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.sh'
+[33.636s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.bash'
+[33.637s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.zsh'
+[33.639s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/colcon-core/packages/sr_interfaces)
+[33.643s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sr_interfaces)
+[33.644s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' for CMake module files
+[33.645s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces' for CMake config files
+[33.646s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'cmake_prefix_path')
+[33.646s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.ps1'
+[33.647s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.dsv'
+[33.648s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/cmake_prefix_path.sh'
+[33.649s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib'
+[33.650s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'ld_library_path_lib')
+[33.651s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.ps1'
+[33.653s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.dsv'
+[33.656s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/ld_library_path_lib.sh'
+[33.658s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/bin'
+[33.659s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/pkgconfig/sr_interfaces.pc'
+[33.660s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages'
+[33.660s] Level 1:colcon.colcon_core.shell:create_environment_hook('sr_interfaces', 'pythonpath')
+[33.661s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.ps1'
+[33.663s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.dsv'
+[33.664s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/hook/pythonpath.sh'
+[33.666s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/bin'
+[33.667s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.ps1'
+[33.669s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.dsv'
+[33.671s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.sh'
+[33.673s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.bash'
+[33.675s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/sr_interfaces/package.zsh'
+[33.677s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/sr_interfaces/share/colcon-core/packages/sr_interfaces)
+[33.678s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/fintan/ME4857Assignment2-master/src/bt' with build type 'ament_cmake'
+[33.679s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/fintan/ME4857Assignment2-master/src/bt'
+[33.680s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[33.680s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[34.149s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/bt': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/bt -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/bt
+[39.702s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/bt' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/bt -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/bt
+[39.704s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/bt': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/bt -- -j12 -l12
+[40.446s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/bt' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/bt -- -j12 -l12
+[40.448s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/bt': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/bt
+[40.630s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bt)
+[40.631s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt' for CMake module files
+[40.632s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/bt' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy PYTHONPATH=/home/fintan/ME4857Assignment2-master/install/sr_interfaces/lib/python3.12/site-packages:/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/bt
+[40.632s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt' for CMake config files
+[40.633s] Level 1:colcon.colcon_core.shell:create_environment_hook('bt', 'cmake_prefix_path')
+[40.633s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.ps1'
+[40.635s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.dsv'
+[40.635s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.sh'
+[40.636s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib'
+[40.636s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/bin'
+[40.636s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib/pkgconfig/bt.pc'
+[40.636s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages'
+[40.637s] Level 1:colcon.colcon_core.shell:create_environment_hook('bt', 'pythonpath')
+[40.637s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.ps1'
+[40.638s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.dsv'
+[40.639s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.sh'
+[40.640s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/bin'
+[40.641s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.ps1'
+[40.642s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.dsv'
+[40.643s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.sh'
+[40.643s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.bash'
+[40.644s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.zsh'
+[40.644s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/bt/share/colcon-core/packages/bt)
+[40.646s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bt)
+[40.646s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt' for CMake module files
+[40.647s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt' for CMake config files
+[40.647s] Level 1:colcon.colcon_core.shell:create_environment_hook('bt', 'cmake_prefix_path')
+[40.647s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.ps1'
+[40.648s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.dsv'
+[40.648s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/cmake_prefix_path.sh'
+[40.649s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib'
+[40.649s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/bin'
+[40.649s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib/pkgconfig/bt.pc'
+[40.650s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/lib/python3.12/site-packages'
+[40.650s] Level 1:colcon.colcon_core.shell:create_environment_hook('bt', 'pythonpath')
+[40.650s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.ps1'
+[40.651s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.dsv'
+[40.651s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/hook/pythonpath.sh'
+[40.652s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/bt/bin'
+[40.652s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.ps1'
+[40.653s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.dsv'
+[40.655s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.sh'
+[40.658s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.bash'
+[40.659s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/bt/share/bt/package.zsh'
+[40.660s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/bt/share/colcon-core/packages/bt)
+[40.660s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/fintan/ME4857Assignment2-master/src/start_up' with build type 'ament_cmake'
+[40.661s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/fintan/ME4857Assignment2-master/src/start_up'
+[40.661s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[40.661s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[41.419s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/start_up': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/start_up -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/start_up
+[47.526s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/start_up' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake /home/fintan/ME4857Assignment2-master/src/start_up -DCMAKE_INSTALL_PREFIX=/home/fintan/ME4857Assignment2-master/install/start_up
+[47.528s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/start_up': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/start_up -- -j12 -l12
+[47.609s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/start_up' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake --build /home/fintan/ME4857Assignment2-master/build/start_up -- -j12 -l12
+[47.612s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/fintan/ME4857Assignment2-master/build/start_up': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/start_up
+[47.645s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(start_up)
+[47.646s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up' for CMake module files
+[47.647s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/fintan/ME4857Assignment2-master/build/start_up' returned '0': CMAKE_PREFIX_PATH=/home/fintan/ME4857Assignment2-master/install/bt:/home/fintan/ME4857Assignment2-master/install/sr_interfaces:/home/fintan/ME4857Assignment2-master/install/robot_model:/home/fintan/ME4857Assignment2-master/install/start_up:/home/fintan/ME4857Assignment2-master/install/gazebo_worlds:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy /usr/bin/cmake --install /home/fintan/ME4857Assignment2-master/build/start_up
+[47.648s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up' for CMake config files
+[47.649s] Level 1:colcon.colcon_core.shell:create_environment_hook('start_up', 'cmake_prefix_path')
+[47.649s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.ps1'
+[47.650s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.dsv'
+[47.651s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.sh'
+[47.652s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/bin'
+[47.652s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/lib/pkgconfig/start_up.pc'
+[47.652s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/lib/python3.12/site-packages'
+[47.653s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/bin'
+[47.653s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.ps1'
+[47.653s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.dsv'
+[47.654s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.sh'
+[47.654s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.bash'
+[47.655s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.zsh'
+[47.656s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/start_up/share/colcon-core/packages/start_up)
+[47.661s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(start_up)
+[47.662s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up' for CMake module files
+[47.664s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up' for CMake config files
+[47.664s] Level 1:colcon.colcon_core.shell:create_environment_hook('start_up', 'cmake_prefix_path')
+[47.665s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.ps1'
+[47.666s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.dsv'
+[47.667s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/hook/cmake_prefix_path.sh'
+[47.667s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/bin'
+[47.668s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/lib/pkgconfig/start_up.pc'
+[47.668s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/lib/python3.12/site-packages'
+[47.668s] Level 1:colcon.colcon_core.environment:checking '/home/fintan/ME4857Assignment2-master/install/start_up/bin'
+[47.669s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.ps1'
+[47.670s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.dsv'
+[47.670s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.sh'
+[47.671s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.bash'
+[47.674s] INFO:colcon.colcon_core.shell:Creating package script '/home/fintan/ME4857Assignment2-master/install/start_up/share/start_up/package.zsh'
+[47.675s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/fintan/ME4857Assignment2-master/install/start_up/share/colcon-core/packages/start_up)
+[47.676s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[47.677s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[47.678s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[47.679s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[47.830s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[47.830s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[47.830s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[47.830s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[47.832s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[47.833s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[47.833s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/fintan/ME4857Assignment2-master/install/local_setup.ps1'
+[47.834s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/fintan/ME4857Assignment2-master/install/_local_setup_util_ps1.py'
+[47.835s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/fintan/ME4857Assignment2-master/install/setup.ps1'
+[47.836s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/fintan/ME4857Assignment2-master/install/local_setup.sh'
+[47.837s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/fintan/ME4857Assignment2-master/install/_local_setup_util_sh.py'
+[47.838s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/fintan/ME4857Assignment2-master/install/setup.sh'
+[47.841s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/fintan/ME4857Assignment2-master/install/local_setup.bash'
+[47.842s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/fintan/ME4857Assignment2-master/install/setup.bash'
+[47.843s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/fintan/ME4857Assignment2-master/install/local_setup.zsh'
+[47.844s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/fintan/ME4857Assignment2-master/install/setup.zsh'

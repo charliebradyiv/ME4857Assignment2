@@ -1,0 +1,15 @@
+{
+  "package_name": "sr_interfaces",
+  "output_dir": "/home/fintan/ME4857Assignment2-master/build/sr_interfaces/rosidl_generator_type_description/sr_interfaces",
+  "idl_tuples": [
+    "/home/fintan/ME4857Assignment2-master/build/sr_interfaces/rosidl_adapter/sr_interfaces:action/NavigateToWaypoint.idl"
+  ],
+  "include_paths": [
+    "geometry_msgs:/opt/ros/jazzy/share/geometry_msgs",
+    "std_msgs:/opt/ros/jazzy/share/std_msgs",
+    "service_msgs:/opt/ros/jazzy/share/service_msgs",
+    "builtin_interfaces:/opt/ros/jazzy/share/builtin_interfaces",
+    "action_msgs:/opt/ros/jazzy/share/action_msgs",
+    "unique_identifier_msgs:/opt/ros/jazzy/share/unique_identifier_msgs"
+  ]
+}
