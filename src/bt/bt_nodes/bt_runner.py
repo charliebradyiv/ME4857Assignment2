@@ -86,13 +86,14 @@ class RetreatFromFire(py_trees.behaviour.Behaviour):
 
 class ScanEnvironment(py_trees.behaviour.Behaviour):
     """
-    Rotates 360 degrees at startup and records the best bearing for each colour.
-    Scan progress is stored on the node so battery/fire interruptions don't reset it.
+    Rotates 360 degrees at startup to get an overview of the environment.
+    Records the best bearing for each colour seen.
+    Scan progress stored on node so interruptions don't reset it.
     """
 
     FULL_ROTATION = 2.0 * math.pi
     SCAN_SPEED    = 0.3
-    HALF_FOV      = 0.52  # ~30 degree half-FOV
+    HALF_FOV      = 0.52
 
     def __init__(self, node):
         super().__init__('ScanEnvironment')
@@ -127,9 +128,7 @@ class ScanEnvironment(py_trees.behaviour.Behaviour):
                 self.node.colour_bearings[colour] = bearing
                 self.node.get_logger().info(
                     f'Scan: {colour} at yaw={math.degrees(current_yaw):.1f} deg  '
-                    f'offset={self.node.colour_offset_x:.2f}  '
-                    f'bearing={math.degrees(bearing):.1f} deg  '
-                    f'area={area:.0f}'
+                    f'bearing={math.degrees(bearing):.1f} deg  area={area:.0f}'
                 )
 
         if self.node._scan_rotated >= self.FULL_ROTATION:
@@ -137,14 +136,13 @@ class ScanEnvironment(py_trees.behaviour.Behaviour):
             del self.node._scan_rotated
             del self.node._scan_best_areas
             self.node.get_logger().info(
-                f'Scan complete. Bearings: {list(self.node.colour_bearings.keys())}'
+                f'Scan complete. Found: {list(self.node.colour_bearings.keys())}'
             )
             return py_trees.common.Status.SUCCESS
 
         twist = Twist()
         twist.angular.z = self.SCAN_SPEED
         self.node.cmd_vel_pub.publish(twist)
-
         self.node.get_logger().info(
             f'Scanning... {math.degrees(self.node._scan_rotated):.0f} / 360 deg',
             throttle_duration_sec=2.0
@@ -152,204 +150,157 @@ class ScanEnvironment(py_trees.behaviour.Behaviour):
         return py_trees.common.Status.RUNNING
 
     def terminate(self, new_status):
-        # Do NOT delete _scan_rotated — preserve progress on interruption
         self.node.cmd_vel_pub.publish(Twist())
 
 
-class NavigateToColour(py_trees.behaviour.Behaviour):
+class NavigateToVerified(py_trees.behaviour.Behaviour):
     """
-    Drives the robot to a target colour using camera + LiDAR.
+    Hybrid navigation: waypoint coordinates + camera colour verification.
 
-    Phase priority (checked in initialise):
-      1. GOTO_POSITION  — if we've visited this colour before, drive straight to its
-                          stored world (x, y) coordinates using odometry. Switches to
-                          camera-guided SEARCH for the final approach.
-      2. TURN_TO_BEARING — if a bearing was recorded during the startup scan, rotate
-                          to face it before searching.
-      3. SEARCH         — rotate slowly until the target colour is visible.
-      4. DRIVE          — drive forward with camera steering. Tolerates brief colour
-                          loss (LOST_THRESHOLD ticks) before reverting to SEARCH.
+    Phase 1 — NAVIGATE:
+      Sends a goal to navigate_to_server with the target waypoint name.
+      navigate_to_server drives using hardcoded coordinates with LiDAR
+      obstacle avoidance. Returns SUCCESS when within stop_distance.
 
-    When the robot successfully reaches a colour, its world position is stored in
-    node.colour_positions so future visits use GOTO_POSITION.
+    Phase 2 — VERIFY:
+      Once the waypoint is reached, the camera confirms the expected colour
+      is visible. Rotates slowly to search if not immediately in view.
+      Times out after verify_timeout seconds.
+
+    This combines the reliability of known coordinates with the accuracy
+    of camera verification — the robot knows WHERE to go and confirms
+    it has found the RIGHT object.
     """
 
-    BEARING_THRESHOLD  = 0.2   # rad (~11 deg)
-    LOST_THRESHOLD     = 8     # consecutive ticks without colour before re-searching
-    POSITION_HANDOFF   = 1.5   # m — switch from odometry nav to camera at this distance
-
-    def __init__(self, name, node, target_colour, stop_distance=1.0, timeout=120.0):
+    def __init__(self, name, node, target_name, expected_colour,
+                 stop_distance=1.0, verify_timeout=15.0):
         super().__init__(name)
-        self.node          = node
-        self.target_colour = target_colour
-        self.stop_distance = stop_distance
-        self.timeout       = timeout
-        self._start        = None
-        self._phase        = 'SEARCH'
-        self._lost_count   = 0
+        self.node            = node
+        self.target_name     = target_name
+        self.expected_colour = expected_colour
+        self.stop_distance   = stop_distance
+        self.verify_timeout  = verify_timeout
+
+        self._client = ActionClient(node, NavigateToWaypoint, 'navigate_to_waypoint')
+        self._goal_handle  = None
+        self._result       = None
+        self._sent         = False
+        self._phase        = 'NAVIGATE'
+        self._verify_start = None
 
     def initialise(self):
-        self._start      = time.time()
-        self._lost_count = 0
-
-        if self.target_colour in self.node.colour_positions:
-            # We've been here before — drive directly to stored coordinates
-            self._phase = 'GOTO_POSITION'
-            tx, ty = self.node.colour_positions[self.target_colour]
-            self.node.get_logger().info(
-                f'NavigateToColour [{self.target_colour}]: '
-                f'going to stored position ({tx:.1f}, {ty:.1f})'
-            )
-        elif self.target_colour in self.node.colour_bearings:
-            self._phase = 'TURN_TO_BEARING'
-            self.node.get_logger().info(
-                f'NavigateToColour [{self.target_colour}]: '
-                f'turning to scan bearing '
-                f'{math.degrees(self.node.colour_bearings[self.target_colour]):.1f} deg'
-            )
-        else:
-            self._phase = 'SEARCH'
-            self.node.get_logger().info(
-                f'NavigateToColour [{self.target_colour}]: no bearing — rotating to search'
-            )
-
-    def update(self):
-        if time.time() - self._start > self.timeout:
-            self.node.cmd_vel_pub.publish(Twist())
-            self.node.get_logger().warn(
-                f'NavigateToColour [{self.target_colour}]: timeout'
-            )
-            return py_trees.common.Status.FAILURE
-
-        on_target = (
-            self.node.colour_visible and
-            self.node.detected_colour == self.target_colour
+        self._sent         = False
+        self._goal_handle  = None
+        self._result       = None
+        self._phase        = 'NAVIGATE'
+        self._verify_start = None
+        self.node.get_logger().info(
+            f'NavigateToVerified [{self.target_name}]: navigating to waypoint'
         )
 
-        # ── Stop condition ──────────────────────────────────────────────────
-        if on_target and self.node.front_obstacle_distance <= self.stop_distance:
-            self.node.cmd_vel_pub.publish(Twist())
-            # Store world position so return trips use GOTO_POSITION
-            self.node.colour_positions[self.target_colour] = (
-                self.node.robot_x,
-                self.node.robot_y
-            )
+    def update(self):
+
+        # ── Phase 1: NAVIGATE ───────────────────────────────────────────────
+        if self._phase == 'NAVIGATE':
+            if not self._sent:
+                if not self._client.wait_for_server(timeout_sec=2.0):
+                    self.node.get_logger().error('navigate_to_waypoint server unavailable')
+                    return py_trees.common.Status.FAILURE
+
+                goal = NavigateToWaypoint.Goal()
+                goal.target_name   = self.target_name
+                goal.stop_distance = self.stop_distance
+
+                self._future = self._client.send_goal_async(
+                    goal,
+                    feedback_callback=self._feedback_cb
+                )
+                self._sent = True
+                self._future.add_done_callback(self._goal_response_cb)
+                return py_trees.common.Status.RUNNING
+
+            rclpy.spin_once(self.node, timeout_sec=0.0)
+
+            if self._result is None:
+                return py_trees.common.Status.RUNNING
+
+            if not self._result.success:
+                self.node.get_logger().error(
+                    f'Navigation to {self.target_name} failed'
+                )
+                return py_trees.common.Status.FAILURE
+
+            # Navigation succeeded — move to verification
             self.node.get_logger().info(
-                f'Reached {self.target_colour}: '
-                f'LiDAR={self.node.front_obstacle_distance:.2f}m  '
-                f'pos=({self.node.robot_x:.1f}, {self.node.robot_y:.1f}) stored'
+                f'Reached {self.target_name} waypoint — verifying with camera'
             )
-            return py_trees.common.Status.SUCCESS
+            self._phase        = 'VERIFY'
+            self._verify_start = time.time()
 
-        twist = Twist()
-
-        # ── Phase: GOTO_POSITION ────────────────────────────────────────────
-        # Drive toward stored world coordinates using odometry.
-        # Hand off to camera (SEARCH) when close enough.
-        if self._phase == 'GOTO_POSITION':
-            tx, ty = self.node.colour_positions[self.target_colour]
-            dx     = tx - self.node.robot_x
-            dy     = ty - self.node.robot_y
-            dist   = math.sqrt(dx * dx + dy * dy)
-
-            if dist < self.POSITION_HANDOFF:
-                # Close — switch to camera-guided approach
-                self._phase = 'DRIVE' if on_target else 'SEARCH'
+        # ── Phase 2: VERIFY ─────────────────────────────────────────────────
+        if self._phase == 'VERIFY':
+            # Colour confirmed
+            if (self.node.colour_visible and
+                    self.node.detected_colour == self.expected_colour):
+                self.node.cmd_vel_pub.publish(Twist())
                 self.node.get_logger().info(
-                    f'[{self.target_colour}] near stored pos ({dist:.2f}m) '
-                    f'→ {self._phase}'
+                    f'Verified {self.expected_colour} at {self.target_name}'
                 )
+                return py_trees.common.Status.SUCCESS
+
+            # Timeout — accept position even without perfect colour confirmation
+            if time.time() - self._verify_start > self.verify_timeout:
+                self.node.cmd_vel_pub.publish(Twist())
+                self.node.get_logger().warn(
+                    f'Verify timeout at {self.target_name} — '
+                    f'camera sees {self.node.detected_colour}, '
+                    f'expected {self.expected_colour}. Proceeding anyway.'
+                )
+                return py_trees.common.Status.SUCCESS
+
+            # Rotate slowly to find the colour
+            twist = Twist()
+            if (self.node.colour_visible and
+                    self.node.detected_colour == self.expected_colour):
+                # Centre it
+                twist.angular.z = -0.4 * self.node.colour_offset_x
             else:
-                bearing       = math.atan2(dy, dx)
-                heading_error = self.node.angle_diff(bearing, self.node.robot_yaw)
-                speed         = min(0.8, max(0.15, dist * 0.4))
+                twist.angular.z = 0.25
 
-                if abs(heading_error) > 0.3:
-                    twist.linear.x  = 0.0
-                    twist.angular.z = max(-0.6, min(0.6, heading_error * 1.5))
-                else:
-                    twist.linear.x  = speed
-                    twist.angular.z = max(-0.6, min(0.6, heading_error * 1.0))
+            self.node.cmd_vel_pub.publish(twist)
+            self.node.get_logger().info(
+                f'Verifying {self.expected_colour} at {self.target_name} — '
+                f'sees: {self.node.detected_colour}',
+                throttle_duration_sec=1.0
+            )
+            return py_trees.common.Status.RUNNING
 
-                self.node.get_logger().info(
-                    f'GOTO_POSITION [{self.target_colour}]: '
-                    f'dist={dist:.2f}m heading_err={math.degrees(heading_error):.1f}deg',
-                    throttle_duration_sec=1.0
-                )
+        return py_trees.common.Status.FAILURE
 
-        # ── Phase: TURN_TO_BEARING ──────────────────────────────────────────
-        if self._phase == 'TURN_TO_BEARING':
-            bearing = self.node.colour_bearings.get(self.target_colour)
-            if bearing is None:
-                self._phase = 'SEARCH'
-            else:
-                heading_error = self.node.angle_diff(bearing, self.node.robot_yaw)
-                if abs(heading_error) < self.BEARING_THRESHOLD:
-                    self._phase = 'DRIVE' if on_target else 'SEARCH'
-                    self.node.get_logger().info(
-                        f'[{self.target_colour}] bearing reached → {self._phase}'
-                    )
-                else:
-                    twist.angular.z = max(-0.6, min(0.6, heading_error * 1.5))
-                    self.node.get_logger().info(
-                        f'Turning to bearing for {self.target_colour}: '
-                        f'error={math.degrees(heading_error):.1f} deg',
-                        throttle_duration_sec=1.0
-                    )
+    def _feedback_cb(self, feedback):
+        dist = feedback.feedback.distance_remaining
+        self.node.get_logger().info(
+            f'Navigating to {self.target_name}: {dist:.2f}m remaining',
+            throttle_duration_sec=2.0
+        )
 
-        # ── Phase: SEARCH ───────────────────────────────────────────────────
-        if self._phase == 'SEARCH':
-            if on_target:
-                self._phase      = 'DRIVE'
-                self._lost_count = 0
-                self.node.get_logger().info(
-                    f'[{self.target_colour}] found — switching to DRIVE'
-                )
-            else:
-                twist.angular.z = 0.3
-                self.node.get_logger().info(
-                    f'Searching for {self.target_colour} — '
-                    f'sees: {self.node.detected_colour}',
-                    throttle_duration_sec=1.0
-                )
+    def _goal_response_cb(self, future):
+        self._goal_handle = future.result()
+        if self._goal_handle.accepted:
+            result_future = self._goal_handle.get_result_async()
+            result_future.add_done_callback(self._result_cb)
+        else:
+            self.node.get_logger().error(
+                f'Goal to {self.target_name} rejected'
+            )
 
-        # ── Phase: DRIVE ────────────────────────────────────────────────────
-        if self._phase == 'DRIVE':
-            if on_target:
-                self._lost_count = 0
-                dist  = self.node.front_obstacle_distance
-                speed = min(0.8, max(0.15, (dist - self.stop_distance) * 0.8))
-                twist.linear.x  = speed
-                twist.angular.z = -0.8 * self.node.colour_offset_x
-                self.node.get_logger().info(
-                    f'Driving to {self.target_colour}: '
-                    f'offset={self.node.colour_offset_x:.2f} '
-                    f'LiDAR={dist:.2f}m speed={speed:.2f}',
-                    throttle_duration_sec=1.0
-                )
-            else:
-                self._lost_count += 1
-                if self._lost_count > self.LOST_THRESHOLD:
-                    self._phase      = 'SEARCH'
-                    self._lost_count = 0
-                    twist.angular.z  = 0.3
-                    self.node.get_logger().info(
-                        f'[{self.target_colour}] lost — returning to SEARCH'
-                    )
-                else:
-                    twist.linear.x  = 0.1
-                    twist.angular.z = 0.2
-                    self.node.get_logger().info(
-                        f'[{self.target_colour}] briefly lost '
-                        f'({self._lost_count}/{self.LOST_THRESHOLD}) — recovering',
-                        throttle_duration_sec=1.0
-                    )
-
-        self.node.cmd_vel_pub.publish(twist)
-        return py_trees.common.Status.RUNNING
+    def _result_cb(self, future):
+        self._result = future.result().result
 
     def terminate(self, new_status):
         self.node.cmd_vel_pub.publish(Twist())
+        if self._goal_handle is not None:
+            self._goal_handle.cancel_goal_async()
 
 
 class WaitSeconds(py_trees.behaviour.Behaviour):
@@ -410,58 +361,6 @@ class RotateRobot(py_trees.behaviour.Behaviour):
 
     def terminate(self, new_status):
         self.node.cmd_vel_pub.publish(Twist())
-
-
-class GoToDock(py_trees.behaviour.Behaviour):
-    def __init__(self, node):
-        super().__init__('GoToDock')
-        self.node = node
-        self._client = ActionClient(node, NavigateToWaypoint, 'navigate_to_waypoint')
-        self._goal_handle = None
-        self._result = None
-        self._sent = False
-
-    def initialise(self):
-        self._sent = False
-        self._goal_handle = None
-        self._result = None
-
-    def update(self):
-        if not self._sent:
-            if not self._client.wait_for_server(timeout_sec=2.0):
-                self.node.get_logger().error('Action server not available for dock')
-                return py_trees.common.Status.FAILURE
-            goal = NavigateToWaypoint.Goal()
-            goal.target_name  = 'dock'
-            goal.stop_distance = 0.5
-            self._future = self._client.send_goal_async(goal)
-            self._sent = True
-            self._future.add_done_callback(self._goal_response_cb)
-            return py_trees.common.Status.RUNNING
-
-        rclpy.spin_once(self.node, timeout_sec=0.0)
-
-        if self._result is None:
-            return py_trees.common.Status.RUNNING
-        if self._result.success:
-            self.node.get_logger().info('Reached dock')
-            return py_trees.common.Status.SUCCESS
-        return py_trees.common.Status.FAILURE
-
-    def _goal_response_cb(self, future):
-        self._goal_handle = future.result()
-        if self._goal_handle.accepted:
-            result_future = self._goal_handle.get_result_async()
-            result_future.add_done_callback(self._result_cb)
-        else:
-            self.node.get_logger().error('Dock goal rejected')
-
-    def _result_cb(self, future):
-        self._result = future.result().result
-
-    def terminate(self, new_status):
-        if self._goal_handle is not None:
-            self._goal_handle.cancel_goal_async()
 
 
 class WaitForCharge(py_trees.behaviour.Behaviour):
@@ -540,12 +439,8 @@ class BTRunner(Node):
         # LiDAR state
         self.front_obstacle_distance = float('inf')
 
-        # Bearings recorded during startup 360 scan {colour: bearing_rad}
+        # Bearings from startup scan (used for awareness, not primary navigation)
         self.colour_bearings = {}
-
-        # World positions recorded on first successful visit {colour: (x, y)}
-        # Used for accurate return trips without needing to search
-        self.colour_positions = {}
 
         # Task flags
         self.scan_done  = False
@@ -654,7 +549,17 @@ class BTRunner(Node):
                 BatteryOK(self),
                 py_trees.composites.Sequence(
                     name='DockingSequence', memory=True,
-                    children=[GoToDock(self), charge_with_timeout]
+                    children=[
+                        # Navigate to dock by coordinate, verify by black colour
+                        NavigateToVerified(
+                            'GoToDock', self,
+                            target_name='dock',
+                            expected_colour='black',
+                            stop_distance=0.5,
+                            verify_timeout=10.0
+                        ),
+                        charge_with_timeout,
+                    ]
                 )
             ]
         )
@@ -671,7 +576,7 @@ class BTRunner(Node):
                 ]
             )
 
-        # Startup scan — runs once, resumes after interruptions
+        # Startup scan
         startup_scan = py_trees.composites.Selector(
             name='StartupScanWrapper', memory=False,
             children=[
@@ -686,20 +591,35 @@ class BTRunner(Node):
             ]
         )
 
-        # Task 1: Bring Medical Kit to Survivor
+        # ── Task 1: Bring Medical Kit to Survivor ──
         task1_inner = py_trees.composites.Sequence(
             name='Task1_MedicalKit', memory=True,
             children=[
-                step('GoToSurvivor',    't1_survivor_reached',
-                     NavigateToColour('GoToSurvivor', self, 'green', stop_distance=1.0)),
-                step('WaitOneSec',      't1_waited',
+                step('GoToSurvivor', 't1_survivor_reached',
+                     NavigateToVerified(
+                         'GoToSurvivor', self,
+                         target_name='survivor',
+                         expected_colour='green',
+                         stop_distance=1.0
+                     )),
+                step('WaitOneSec', 't1_waited',
                      WaitSeconds('WaitOneSec', seconds=1.0)),
-                step('PublishTF',       't1_tf_published',
+                step('PublishTF', 't1_tf_published',
                      PublishSurvivorTF(self)),
-                step('GoToMedKit',      't1_medkit_reached',
-                     NavigateToColour('GoToMedKit', self, 'yellow', stop_distance=0.5)),
-                step('ReturnToSurvivor','t1_returned',
-                     NavigateToColour('ReturnToSurvivor', self, 'green', stop_distance=1.0)),
+                step('GoToMedKit', 't1_medkit_reached',
+                     NavigateToVerified(
+                         'GoToMedKit', self,
+                         target_name='medical_kit',
+                         expected_colour='yellow',
+                         stop_distance=0.5
+                     )),
+                step('ReturnToSurvivor', 't1_returned',
+                     NavigateToVerified(
+                         'ReturnToSurvivor', self,
+                         target_name='survivor',
+                         expected_colour='green',
+                         stop_distance=1.0
+                     )),
                 MarkTaskDone('MarkTask1Done', self, 'task1_done'),
             ]
         )
@@ -709,13 +629,18 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task1Skip', self, 'task1_done'), task1_inner]
         )
 
-        # Task 2: Scan Dam
+        # ── Task 2: Scan Dam ──
         task2_inner = py_trees.composites.Sequence(
             name='Task2_ScanDam', memory=True,
             children=[
-                step('GoToDam',     't2_dam_reached',
-                     NavigateToColour('GoToDam', self, 'blue', stop_distance=0.5)),
-                step('RotateLeft',  't2_rotated_left',
+                step('GoToDam', 't2_dam_reached',
+                     NavigateToVerified(
+                         'GoToDam', self,
+                         target_name='dam',
+                         expected_colour='blue',
+                         stop_distance=0.5
+                     )),
+                step('RotateLeft', 't2_rotated_left',
                      RotateRobot('RotateLeft10', self, degrees=10)),
                 step('RotateRight', 't2_rotated_right',
                      RotateRobot('RotateRight10', self, degrees=-10)),
@@ -728,12 +653,17 @@ class BTRunner(Node):
             children=[TaskAlreadyDone('Task2Skip', self, 'task2_done'), task2_inner]
         )
 
-        # Task 5: Exit Building
+        # ── Task 5: Exit Building ──
         task5_inner = py_trees.composites.Sequence(
             name='Task5_Exit', memory=True,
             children=[
                 step('GoToExit', 't5_exit_reached',
-                     NavigateToColour('GoToExit', self, 'purple', stop_distance=0.3)),
+                     NavigateToVerified(
+                         'GoToExit', self,
+                         target_name='exit',
+                         expected_colour='purple',
+                         stop_distance=0.3
+                     )),
                 MarkTaskDone('MarkTask5Done', self, 'task5_done'),
                 StopAndWait(self),
             ]
@@ -748,7 +678,7 @@ class BTRunner(Node):
             name='Mission', memory=False,
             children=[
                 fire_safety_fallback,
-                startup_scan,        # scan runs before battery check to avoid interference
+                startup_scan,
                 battery_fallback,
                 task1,
                 task2,

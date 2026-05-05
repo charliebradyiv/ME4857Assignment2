@@ -31,7 +31,7 @@ class CameraColourDetector(Node):
         self.bridge = CvBridge()
 
         self.declare_parameter('image_topic', '/camera/image_raw')
-        self.declare_parameter('min_area', 500.0)
+        self.declare_parameter('min_area', 1500.0)
 
         self.image_topic = self.get_parameter('image_topic').value
         self.min_area = float(self.get_parameter('min_area').value)

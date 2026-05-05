@@ -41,11 +41,4 @@ def generate_launch_description():
               name='fire_safety',
               output='screen',
             ),
-        Node(
-             package='bt',
-             executable='cmd_vel_converter.py',
-             name='cmd_vel_converter',
-            output='screen',
-            ),
-
 ])
